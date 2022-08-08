@@ -1,6 +1,8 @@
 <tr>
   <td><%= route.name %></td>
   <td><%= route.verb %></td>
-  <td><%= route.path.spec %></td>
-  <td><%= link_to "Pause", "#" %></td>
+  <td><%= route.path_description %></td>
+  <td>
+    <%= button_to "Pause", pause_route_path(route), method: :post, class: "button is-warning" %>
+  </td>
 </tr>

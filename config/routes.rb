@@ -1,3 +1,5 @@
 MissionControl::Web::Engine.routes.draw do
-  resources :routes, only: [ :index ]
+  resources :routes do
+    post "pause", on: :member
+  end
 end
