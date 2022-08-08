@@ -7,7 +7,9 @@ gemspec
 
 gem "sqlite3"
 
+gem "puma"
 gem "sprockets-rails"
+
 gem "rubocop-37signals", bc: "house-style", require: false
 
 # Start debugger with binding.b [https://github.com/ruby/debug]
