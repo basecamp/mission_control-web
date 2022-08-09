@@ -2,6 +2,7 @@
   <td><%= route.name %></td>
   <td><%= route.verb %></td>
   <td><%= route.path_description %></td>
+  <td><%= route.path.to_regexp.inspect %></td>
   <td>
     <%= button_to "Pause", pause_route_path(route), method: :post, class: "button is-warning" %>
   </td>
