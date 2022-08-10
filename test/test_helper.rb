@@ -17,4 +17,8 @@ end
 
 class ActiveSupport::TestCase
   include PerformanceTestHelpers
+
+  teardown do
+    MissionControl::Web.configuration.restore_attributes
+  end
 end

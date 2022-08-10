@@ -1,7 +1,7 @@
 module MissionControl
   module Web
     class Configuration
-      include ActiveModel::Attributes
+      include ActiveModel::Attributes, ActiveModel::Dirty
 
       attribute :enabled, :boolean, default: true
 
