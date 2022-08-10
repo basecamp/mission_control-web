@@ -4,7 +4,7 @@ class MissionControl::Web::Route
   end
 
   def self.disabled
-    route_patterns.to_h.map { |route_pattern, _value| new(pattern: route_pattern) }
+    route_patterns.keys.map { |route_pattern| new(pattern: route_pattern) }
   end
 
   def self.route_patterns
