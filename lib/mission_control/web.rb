@@ -1,6 +1,5 @@
 require "zeitwerk"
 loader = Zeitwerk::Loader.new
-loader.tag = "mission_control-web"
 loader.inflector = Zeitwerk::GemInflector.new(__FILE__)
 loader.push_dir(File.expand_path("..", __dir__))
 loader.setup
