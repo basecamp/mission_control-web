@@ -3,7 +3,7 @@ require "test_helper"
 module MissionControl::Web
   class RequestFilterMiddlewareTest < ActionDispatch::IntegrationTest
     test "requests to disabled routes are disallowed" do
-      Route.new(pattern: "\/posts").disable
+      disable_route "/posts"
 
       get posts_path
 
@@ -17,8 +17,8 @@ module MissionControl::Web
     end
 
     test "requests to disabled routes are allowed when Mission Control Web is disabled" do
-      Route.new(pattern: "\/posts").disable
       MissionControl::Web.configuration.enabled = false
+      disable_route "/posts"
 
       get posts_path
 

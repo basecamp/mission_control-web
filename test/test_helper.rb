@@ -6,6 +6,7 @@ ActiveRecord::Migrator.migrations_paths = [ File.expand_path("../test/dummy/db/m
 ActiveRecord::Migrator.migrations_paths << File.expand_path("../db/migrate", __dir__)
 require "rails/test_help"
 require "helpers/performance_test_helpers"
+require "helpers/route_test_helpers"
 
 # Load fixtures from the engine
 if ActiveSupport::TestCase.respond_to?(:fixture_path=)
@@ -16,7 +17,7 @@ if ActiveSupport::TestCase.respond_to?(:fixture_path=)
 end
 
 class ActiveSupport::TestCase
-  include PerformanceTestHelpers
+  include RouteTestHelpers, PerformanceTestHelpers
 
   teardown do
     MissionControl::Web.configuration.restore_attributes
