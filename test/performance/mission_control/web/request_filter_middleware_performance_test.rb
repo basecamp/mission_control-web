@@ -1,6 +1,6 @@
 require "test_helper"
 
-module MissionControl::Web::Performance
+module MissionControl::Web
   class RequestFilterMiddlewarePerformanceTest < ActionDispatch::IntegrationTest
     test "performance overhead is less than 10%" do
       baseline = -> { get posts_path }
@@ -9,8 +9,6 @@ module MissionControl::Web::Performance
         MissionControl::Web.configuration.enabled = false
 
         get posts_path
-
-        MissionControl::Web.configuration.enabled = true
       end
     end
   end
