@@ -18,6 +18,7 @@ end
 
 group :test do
   gem "benchmark-ips"
+  gem "benchmark-memory"
 end
 
 # Start debugger with binding.b [https://github.com/ruby/debug]
