@@ -7,7 +7,7 @@ module MissionControl::Web
     def call(env)
       return @app.call(env) if MissionControl::Web.configuration.disabled?
 
-      request = MissionControl::Web::Request.new(env)
+      request = Request.new(env)
 
       if request.disallowed?
         [ 503, {}, [ "Unavailable" ] ]
