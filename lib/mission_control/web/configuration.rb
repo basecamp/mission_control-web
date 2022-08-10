@@ -1,13 +1,9 @@
-module MissionControl
-  module Web
-    class Configuration
-      include ActiveModel::Attributes, ActiveModel::Dirty
+class MissionControl::Web::Configuration
+  include ActiveModel::Attributes, ActiveModel::Dirty
 
-      attribute :enabled, :boolean, default: true
+  attribute :enabled, :boolean, default: true
 
-      def disabled?
-        !enabled
-      end
-    end
+  def disabled?
+    !enabled
   end
 end
