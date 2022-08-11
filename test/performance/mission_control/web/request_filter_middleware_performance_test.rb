@@ -20,7 +20,9 @@ module MissionControl::Web
       end
     end
 
-    test "memory overhead with middleware enabled is less than 35%" do
+    test "memory overhead with middleware enabled is less than 55%" do
+      get posts_path # warmup
+
       baseline = -> {
         MissionControl::Web.configuration.enabled = false
 
@@ -29,7 +31,7 @@ module MissionControl::Web
         assert_equal 200, status
       }
 
-      assert_uses_more_memory_by_at_most 1.35, baseline: baseline do
+      assert_uses_more_memory_by_at_most 1.55, baseline: baseline do
         MissionControl::Web.configuration.enabled = true
 
         get posts_path
