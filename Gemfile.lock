@@ -97,9 +97,6 @@ GEM
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     json (2.6.2)
-    kredis (1.2.0)
-      activesupport (>= 6.0.0)
-      redis (~> 4.2)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -218,9 +215,9 @@ DEPENDENCIES
   benchmark-ips
   benchmark-memory
   byebug
-  kredis
   mission_control-web!
   puma
+  redis
   rubocop
   rubocop-37signals!
   rubocop-performance

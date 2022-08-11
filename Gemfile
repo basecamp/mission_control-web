@@ -6,7 +6,7 @@ git_source(:bc)     { |repo| "https://github.com/basecamp/#{repo}" }
 gemspec
 
 gem "sqlite3"
-gem "kredis"
+gem "redis"
 
 gem "sprockets-rails"
 gem "rubocop-37signals", bc: "house-style", require: false

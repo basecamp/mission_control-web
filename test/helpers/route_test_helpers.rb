@@ -1,5 +1,5 @@
 module RouteTestHelpers
   def disable_route(path)
-    MissionControl::Web::Route.new(pattern: path).disable
+    MissionControl::Web::Patterns.disable(path)
   end
 end
