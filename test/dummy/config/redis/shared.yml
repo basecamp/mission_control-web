@@ -4,3 +4,6 @@ development: &development
 
 test:
   <<: *development
+
+profile:
+  <<: *development

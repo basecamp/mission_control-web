@@ -1,5 +1,6 @@
 # Configure Rails Environment
-ENV["RAILS_ENV"] = "test"
+ENV["RAILS_ENV"] ||= "test"
+ENV["SECRET_KEY_BASE"] ||= SecureRandom.hex(10)
 
 require_relative "../test/dummy/config/environment"
 ActiveRecord::Migrator.migrations_paths = [ File.expand_path("../test/dummy/db/migrate", __dir__) ]
