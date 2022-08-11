@@ -53,7 +53,7 @@ module PerformanceTestHelpers
     baseline_result = result.entries.find { |entry| entry.label == baseline_label }
     code_to_test_result = result.entries.find { |entry| entry.label == code_to_test_label }
 
-    times_more_memory = baseline_result.measurement.memory.allocated.to_f / baseline_result.measurement.memory.allocated.to_f
+    times_more_memory = code_to_test_result.measurement.memory.allocated.to_f / baseline_result.measurement.memory.allocated.to_f
 
     if !quiet || times_more_memory >= threshold_factor
       puts "#{output}#{error}"
