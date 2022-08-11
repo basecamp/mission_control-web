@@ -1,1 +1,7 @@
 <p>List of posts</p>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li><%= post.title %></li>
+  <% end %>
+</ul>
