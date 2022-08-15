@@ -21,6 +21,19 @@ Or install it yourself as:
 $ gem install mission_control-web
 ```
 
+## Testing
+Run:
+
+```
+rake test
+```
+
+Performance tests can be run in the "profile" environment for more consistent results with:
+
+```
+RAILS_ENV=profile rake test:performance
+```
+
 ## Contributing
 Contribution directions go here.
 

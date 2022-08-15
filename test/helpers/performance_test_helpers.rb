@@ -38,8 +38,9 @@ module PerformanceTestHelpers
     assert times_slower < threshold_factor, "Expecting #{threshold_factor} times slower at most, but got #{times_slower} times slower"
   end
 
-  def assert_uses_more_memory_by_at_most(threshold_factor, baseline:, baseline_label: BASELINE_LABEL, code_to_test_label: CODE_TO_TEST_LABEL, duration: BENCHMARK_DURATION, quiet: true, &block_to_test)
+  def assert_uses_more_memory_by_at_most(threshold_factor, warmup: Proc.new, baseline:, baseline_label: BASELINE_LABEL, code_to_test_label: CODE_TO_TEST_LABEL, duration: BENCHMARK_DURATION, quiet: true, &block_to_test)
     GC.start
+    warmup.call
 
     result = nil
     output, error = capture_io do

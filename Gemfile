@@ -16,7 +16,7 @@ group :development, :test do
   gem "byebug"
 end
 
-group :test do
+group :test, :profile do
   gem "benchmark-ips"
   gem "benchmark-memory"
 end
