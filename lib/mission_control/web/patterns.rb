@@ -1,6 +1,4 @@
-module MissionControl::Web::Patterns
-  extend self
-
+class MissionControl::Web::Patterns
   attr_accessor :collection
 
   REDIS_KEY = :mission_control_web_disabled_routes
