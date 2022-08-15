@@ -2,7 +2,7 @@ require "test_helper"
 
 module MissionControl::Web
   class RequestFilterMiddlewarePerformanceTest < ActionDispatch::IntegrationTest
-    test "performance overhead with middleware enabled is less than 21%" do
+    test "performance overhead with middleware enabled is less than 23%" do
       baseline = -> {
         MissionControl::Web.configuration.enabled = false
 
@@ -11,7 +11,7 @@ module MissionControl::Web
         assert_equal 200, status
       }
 
-      assert_slower_by_at_most 1.21, baseline: baseline do
+      assert_slower_by_at_most 1.23, baseline: baseline do
         MissionControl::Web.configuration.enabled = true
 
         get posts_path
