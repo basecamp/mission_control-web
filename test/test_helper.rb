@@ -1,4 +1,6 @@
 # Configure Rails Environment
+require "securerandom"
+
 ENV["RAILS_ENV"] ||= "test"
 ENV["SECRET_KEY_BASE"] ||= SecureRandom.hex(10)
 
