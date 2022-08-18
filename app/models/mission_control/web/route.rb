@@ -4,6 +4,7 @@ class MissionControl::Web::Route < ApplicationRecord
   after_destroy :enable_route
 
   validates :name, :pattern, presence: true
+  validates :pattern, uniqueness: true
 
   def disabled?
     !enabled?
