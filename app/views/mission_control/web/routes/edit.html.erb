@@ -1,7 +1,8 @@
-<div class="level">
-  <div class="level-left">
-    <h2 class="subtitle level-item">Editing Route</h2>
-  </div>
-</div>
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li><%= link_to "Routes", routes_path %></li>
+    <li class="is-active"><a>Editing <%= @route.name %></a></li>
+  </ul>
+</nav>
 
 <%= render "form", route: @route %>

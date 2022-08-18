@@ -1,3 +1,10 @@
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li><%= link_to "Routes", routes_path %></li>
+    <li class="is-active"><%= link_to @route.name, @route%></li>
+  </ul>
+</nav>
+
 <div class="my-4">
   <div class="columns">
     <div class="column is-one-fifth">
