@@ -1,11 +1,7 @@
-<%= link_to "← Back to routes", routes_path, class: "button is-small mb-4" %>
-
-<h2 class="subtitle">Editing Route</h2>
+<div class="level">
+  <div class="level-left">
+    <h2 class="subtitle level-item">Editing Route</h2>
+  </div>
+</div>
 
 <%= render "form", route: @route %>
-
-<br>
-
-<div>
-  <%= link_to "Show this route", @route, class: "button" %>
-</div>
