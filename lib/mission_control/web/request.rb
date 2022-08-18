@@ -1,7 +1,11 @@
 module MissionControl::Web
-  class Request < Rack::Request
+  class Request
+    def initialize(env)
+      @path = env["SCRIPT_NAME"] + env["PATH_INFO"]
+    end
+
     def disallowed?
-      Route.disabled.any? { |route| route.match? path }
+      MissionControl::Web.patterns.disabled.matching?(@path)
     end
   end
 end

@@ -11,5 +11,13 @@ module MissionControl
     def self.configuration
       @configuration ||= Configuration.new
     end
+
+    def self.patterns
+      @patterns ||= Patterns.new
+    end
+
+    def self.redis
+      @redis ||= Redis.new
+    end
   end
 end

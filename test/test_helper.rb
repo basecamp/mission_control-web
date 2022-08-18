@@ -24,5 +24,6 @@ class ActiveSupport::TestCase
 
   teardown do
     MissionControl::Web.configuration.restore_attributes
+    MissionControl::Web.redis.flushdb
   end
 end
