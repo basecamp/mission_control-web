@@ -5,7 +5,7 @@ module MissionControl::Web
     end
 
     def disallowed?
-      MissionControl::Web.patterns.disabled.matching?(@path)
+      MissionControl::Web.routes.disabled?(@path)
     end
   end
-end
+end 

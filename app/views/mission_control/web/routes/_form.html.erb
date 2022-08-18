@@ -1,0 +1,26 @@
+<%= form_with(model: route) do |form| %>
+  <%= render partial: "form_errors", locals: { model: route } %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pattern %>
+    <%= form.text_field :pattern %>
+  </div>
+
+  <div class="field">
+    <%= form.label_check_box :enabled %>
+    <%= form.check_box :enabled %>
+  </div>
+
+  <div class="field is-grouped">
+    <%= form.submit_primary %>
+
+    <%= form.div_control do %>
+      <%= link_to "Cancel", routes_path, class: "button is-link is-light"  %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,4 @@
+posts:
+  name: Posts
+  pattern: "/posts"
+  enabled: false

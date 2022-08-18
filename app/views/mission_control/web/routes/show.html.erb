@@ -1,0 +1,25 @@
+<%= link_to "← Back to routes", routes_path, class: "button is-small mb-4" %>
+
+<table class="table">
+  <tr>
+    <th>Name:</th>
+    <td><%= @route.name %></td>
+  </tr>
+  <tr>
+    <th>Pattern:</th>
+    <td><%= @route.pattern %></td>
+  </tr>
+  <tr>
+    <th>Status:</th>
+    <td><%= route_status_tag @route.enabled %></td>
+  </tr>
+</table>
+
+<nav class="level">
+  <div class="level-left">
+    <%= link_to "Edit this route", edit_route_path(@route), class: "button level-item" %>
+  </div>
+  <div class="level-right">
+    <%= button_to "Destroy this route", @route, method: :delete, class: "button is-danger level-item" %>
+  </div>
+</nav>

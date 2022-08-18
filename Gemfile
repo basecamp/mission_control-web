@@ -11,6 +11,10 @@ gem "redis"
 gem "sprockets-rails"
 gem "rubocop-37signals", bc: "house-style", require: false
 
+group :development do
+  gem "web-console"
+end
+
 group :development, :test do
   gem "puma"
   gem "byebug"
