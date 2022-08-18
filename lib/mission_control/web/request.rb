@@ -8,4 +8,4 @@ module MissionControl::Web
       MissionControl::Web.routes.disabled?(@path)
     end
   end
-end 
+end
