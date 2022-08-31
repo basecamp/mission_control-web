@@ -4,9 +4,8 @@ module MissionControl::Web::Route::DisabledRoutes
   included do
     class_attribute :disabled_routes_cache, default: MissionControl::Web::DisabledRoutesCache.new
 
-    after_save    :disable_route, if: :disabled?
-    after_save    :enable_route,  if: :enabled?
-    after_destroy :enable_route
+    after_save    :update_in_cache
+    after_destroy :remove_from_cache
   end
 
   class_methods do
@@ -16,11 +15,11 @@ module MissionControl::Web::Route::DisabledRoutes
   end
 
   private
-    def disable_route
-      disabled_routes_cache.upsert(self)
+    def update_in_cache
+      disabled_routes_cache.put(self)
     end
 
-    def enable_route
+    def remove_from_cache
       disabled_routes_cache.remove(self)
     end
 end

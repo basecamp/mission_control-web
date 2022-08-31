@@ -1,7 +1,15 @@
 class MissionControl::Web::DisabledRoutesCache
   REDIS_KEY = :mission_control_web_disabled_patterns
 
-  def upsert(route)
+  def put(route)
+    if route.disabled?
+      add(route)
+    else
+      remove(route)
+    end
+  end
+
+  def add(route)
     MissionControl::Web.redis.sadd REDIS_KEY, route.pattern.to_s
   end
 
