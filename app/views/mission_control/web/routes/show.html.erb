@@ -1,0 +1,42 @@
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li><%= link_to "Routes", routes_path %></li>
+    <li class="is-active"><%= link_to @route.name, @route%></li>
+  </ul>
+</nav>
+
+<div class="my-4">
+  <div class="columns">
+    <div class="column is-one-fifth">
+      <p class="has-text-weight-semibold">Name</p>
+    </div>
+    <div class="column">
+      <p><%= @route.name %></p>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column is-one-fifth">
+      <p class="has-text-weight-semibold">Pattern</p>
+    </div>
+    <div class="column">
+      <p><%= @route.pattern %></p>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column is-one-fifth">
+      <p class="has-text-weight-semibold">Traffic Status</p>
+    </div>
+    <div class="column">
+    <p><%= route_status_tag @route.enabled %></p>
+    </div>
+  </div>
+</div>
+
+<div class="level">
+  <div class="level-left">
+    <%= link_to "Edit", edit_route_path(@route), class: "button level-item" %>
+    <%= button_to "Delete", @route, method: :delete, class: "button is-danger level-item" %>
+  </div>
+</div>

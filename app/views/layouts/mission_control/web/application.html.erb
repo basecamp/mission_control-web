@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Mission control web</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+  <head>
+    <title>Mission Control - Web</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag    "mission_control/web/application", media: "all" %>
-</head>
-<body>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <%= stylesheet_link_tag "mission_control/web/application", media: "all" %>
+  </head>
 
-<%= yield %>
+  <body>
+    <div class="container">
+      <section class="section">
 
-</body>
+        <h1 class="title">Mission Control - Web</h1>
+        <%= render "flash" %>
+
+        <%= yield %>
+
+      </section>
+    </div>
+  </body>
 </html>

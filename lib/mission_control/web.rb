@@ -5,16 +5,11 @@ loader.push_dir(File.expand_path("..", __dir__))
 loader.setup
 
 require "mission_control/web/engine"
+require "redis"
 
 module MissionControl
   module Web
-    def self.configuration
-      @configuration ||= Configuration.new
-    end
-
-    def self.patterns
-      @patterns ||= Patterns.new
-    end
+    mattr_reader :configuration, default: Configuration.new
 
     def self.redis
       configuration.redis

@@ -1,0 +1,11 @@
+<% if model.errors.any? %>
+  <div class="notification content">
+    <h3 class="subtitle is-6"><%= pluralize(model.errors.count, "error") %> prohibited this <%= model.class.name.demodulize %> from being saved:</h3>
+
+    <ul>
+      <% model.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
