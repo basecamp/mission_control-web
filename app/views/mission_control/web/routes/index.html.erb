@@ -1,0 +1,27 @@
+<div class="level">
+  <div class="level-left">
+    <h2 class="subtitle level-item">Routes</h2>
+  </div>
+  <div class="level-right">
+    <%= link_to "New Route", new_route_path, class: "button is-primary level-item" %>
+  </div>
+</div>
+
+<div class="content">
+  <% if @routes.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Pattern</th>
+          <th>Traffic Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @routes %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No Routes have yet been configured.</p>
+  <% end %>
+</div>

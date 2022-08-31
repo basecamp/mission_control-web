@@ -1,6 +1,3 @@
-module MissionControl
-  module Web
-    class ApplicationController < ActionController::Base
-    end
-  end
+class MissionControl::Web::ApplicationController < ActionController::Base
+  default_form_builder MissionControl::Web::BulmaFormBuilder
 end

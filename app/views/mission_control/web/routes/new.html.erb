@@ -1,0 +1,8 @@
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li><%= link_to "Routes", routes_path %></li>
+    <li class="is-active"><a>New Route</a></li>
+  </ul>
+</nav>
+
+<%= render "form", route: @route %>
