@@ -1,8 +1,8 @@
 require "test_helper"
 
-class MissionControl::Web::DisabledRoutesCacheTest < ActiveSupport::TestCase
+class MissionControl::Web::RoutesCacheTest < ActiveSupport::TestCase
   setup do
-    @routes = MissionControl::Web::DisabledRoutesCache.new
+    @routes = MissionControl::Web::RoutesCache.new
     @route = MissionControl::Web::Route.new(pattern: "/posts/123", enabled: false)
   end
 

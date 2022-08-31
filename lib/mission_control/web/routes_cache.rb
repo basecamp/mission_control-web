@@ -1,4 +1,4 @@
-class MissionControl::Web::DisabledRoutesCache
+class MissionControl::Web::RoutesCache
   REDIS_KEY = :mission_control_web_disabled_patterns
 
   def put(route)
