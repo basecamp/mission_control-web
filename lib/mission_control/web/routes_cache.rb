@@ -9,12 +9,12 @@ class MissionControl::Web::RoutesCache
     end
   end
 
-  def disabled?(path)
-    all_disabled_patterns.any? { |pattern| Regexp.new(pattern) =~ path }
-  end
-
   def remove(route)
     MissionControl::Web.redis.srem REDIS_KEY, route.pattern.to_s
+  end
+
+  def disabled?(path)
+    all_disabled_patterns.any? { |pattern| Regexp.new(pattern) =~ path }
   end
 
   private
