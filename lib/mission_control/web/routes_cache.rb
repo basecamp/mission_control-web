@@ -11,10 +11,6 @@ class MissionControl::Web::RoutesCache
     end
   end
 
-  def add(route)
-    MissionControl::Web.redis.sadd REDIS_KEY, route.pattern.to_s
-  end
-
   def remove(route)
     MissionControl::Web.redis.srem REDIS_KEY, route.pattern.to_s
   end
@@ -24,6 +20,10 @@ class MissionControl::Web::RoutesCache
   end
 
   private
+    def add(route)
+      MissionControl::Web.redis.sadd REDIS_KEY, route.pattern.to_s
+    end
+
     def all_disabled_patterns
       # Using Redis client rather than Kredis as request interception with a middlware is performance-critical.
       memoize_with_ttl(:all_disabled_patterns) do
