@@ -21,6 +21,24 @@ Or install it yourself as:
 $ gem install mission_control-web
 ```
 
+## Configuration
+
+### Redis client (required)
+
+Configure Mission Control - Web with a Redis client.
+
+```
+MissionControl::Web.configuration.redis = Redis.new(url: "redis://server:6379")
+```
+
+### Disable
+
+Useful for disabling Mission Control - Web on a per-environment basis.
+
+```
+MissionControl::Web.configuration.enabled = false
+```
+
 ## Testing
 Run:
 

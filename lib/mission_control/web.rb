@@ -17,7 +17,7 @@ module MissionControl
     end
 
     def self.redis
-      @redis ||= Redis.new
+      configuration.redis
     end
   end
 end
