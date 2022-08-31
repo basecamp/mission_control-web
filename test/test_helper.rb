@@ -21,6 +21,7 @@ end
 
 class ActiveSupport::TestCase
   include RouteTestHelpers, PerformanceTestHelpers
+  self.use_transactional_tests = true
 
   teardown do
     MissionControl::Web.configuration.restore_attributes
