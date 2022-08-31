@@ -1,4 +1,6 @@
 class MissionControl::Web::RoutesCache
+  include MissionControl::Web::MemoizeWithTtl
+
   REDIS_KEY = :mission_control_web_disabled_patterns
 
   def put(route)
@@ -24,6 +26,8 @@ class MissionControl::Web::RoutesCache
   private
     def all_disabled_patterns
       # Using Redis client rather than Kredis as request interception with a middlware is performance-critical.
-      MissionControl::Web.redis.smembers REDIS_KEY
+      memoize_with_ttl(:all_disabled_patterns) do
+        MissionControl::Web.redis.smembers REDIS_KEY
+      end
     end
 end

@@ -22,6 +22,10 @@ end
 class ActiveSupport::TestCase
   include RouteTestHelpers, PerformanceTestHelpers
 
+  setup do
+    MissionControl::Web.configuration.cache_ttl = 0.seconds
+  end
+
   teardown do
     MissionControl::Web.configuration.restore_attributes
     MissionControl::Web.redis.flushdb
