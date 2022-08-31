@@ -13,18 +13,12 @@ class MissionControl::Web::BulmaFormBuilder < ActionView::Helpers::FormBuilder
     super(method, merge_class(options, "input"))
   end
 
-  def text_field_with_label(method, options = {})
-    label_default(method) + text_field(method, options)
-  end
-
-  # Submit button without colour
   def submit(value = nil, options = {})
     div_control do
       super(value, merge_class(options, "button"))
     end
   end
 
-  # Submit button with the primary colour for most forms
   def submit_primary(value = nil, options = {})
     submit(value, merge_class(options, "is-primary"))
   end
@@ -36,14 +30,11 @@ class MissionControl::Web::BulmaFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   private
+    def merge_class_attribute_value(options, value)
+      new_options = options.clone
+      new_options[:class] = [ value, new_options[:class] ].join(" ")
+      new_options
+    end
 
-  # @param options [Hash]
-  # @param value [String]
-  def merge_class_attribute_value(options, value)
-    new_options = options.clone
-    new_options[:class] = [ value, new_options[:class] ].join(" ")
-    new_options
-  end
-
-  alias_method :merge_class, :merge_class_attribute_value
+    alias_method :merge_class, :merge_class_attribute_value
 end
