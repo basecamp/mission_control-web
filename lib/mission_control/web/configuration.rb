@@ -4,7 +4,13 @@ class MissionControl::Web::Configuration
   attribute :enabled,   :boolean, default: true
   attribute :cache_ttl, :integer, default: 10.seconds
 
+  attr_writer :redis
+
   def disabled?
     !enabled
+  end
+
+  def redis
+    @redis || raise("Redis client not configured. Configure with MissionControl::Web.configuration.redis = Redis.new")
   end
 end

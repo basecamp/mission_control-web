@@ -10,6 +10,9 @@ require "redis"
 module MissionControl
   module Web
     mattr_reader :configuration, default: Configuration.new
-    mattr_reader :redis, default: Redis.new
+
+    def self.redis
+      configuration.redis
+    end
   end
 end
