@@ -1,6 +1,4 @@
 class MissionControl::Web::RoutesCache
-  include MissionControl::Web::MemoizeWithExpiry
-
   REDIS_KEY = :mission_control_web_disabled_patterns
 
   def put(route)
@@ -25,9 +23,18 @@ class MissionControl::Web::RoutesCache
     end
 
     def all_disabled_patterns
-      memoize_with_expiry(:all_disabled_patterns, MissionControl::Web.configuration.routes_cache_ttl) do
+      memoize(ttl: MissionControl::Web.configuration.routes_cache_ttl) do
         # Using Redis client rather than Kredis as request interception with a middleware is performance-critical.
         MissionControl::Web.redis.smembers REDIS_KEY
+      end
+    end
+
+    def memoize(ttl:)
+      if !@patterns.nil? && @patterns_expires_at > Time.now
+        @patterns
+      else
+        @patterns_expires_at = Time.now + ttl
+        @patterns = yield
       end
     end
 end
