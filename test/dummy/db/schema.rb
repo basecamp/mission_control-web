@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_17_202401) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_01_085751) do
   create_table "mission_control_web_routes", force: :cascade do |t|
     t.string "name", null: false
     t.string "pattern", null: false
     t.boolean "enabled", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "application_name"
     t.index ["pattern"], name: "index_mission_control_web_routes_on_pattern", unique: true
   end
 
