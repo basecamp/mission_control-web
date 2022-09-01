@@ -29,7 +29,7 @@ class MissionControl::Web::RoutesCache
     end
 
     def redis_key
-      "mission_control_web_#{application_name.underscore}_disabled_patterns"
+      "mission_control_web_#{application_name.parameterize}_disabled_patterns"
     end
 
     def all_disabled_patterns
