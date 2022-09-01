@@ -1,6 +1,4 @@
 class MissionControl::Web::RoutesCache
-  delegate :redis, to: MissionControl::Web
-
   def initialize(application_name: MissionControl::Web.configuration.application_name)
     @application_name = application_name
   end
@@ -28,7 +26,7 @@ class MissionControl::Web::RoutesCache
       redis.sadd redis_key, route.pattern.to_s
     end
 
-    def redis
+    def application_redis
       MissionControl::Web.configuration.administered_applications.
         detect { |application| application[:name] == application_name }&.dig(:redis)
     end
