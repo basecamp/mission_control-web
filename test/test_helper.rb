@@ -24,17 +24,13 @@ class ActiveSupport::TestCase
 
   setup do
     MissionControl::Web.configuration.routes_cache_ttl = 0.seconds
-    configure_redis
+    MissionControl::Web.configuration.redis = @original_redis = Redis.new(url: "redis://localhost:6379/15")
   end
 
   teardown do
     MissionControl::Web.configuration.restore_attributes
-    configure_redis
+    MissionControl::Web.configuration.redis = @original_redis
+
     MissionControl::Web.redis.flushdb
   end
-
-  private
-    def configure_redis
-      MissionControl::Web.configuration.redis = Redis.new(url: "redis://localhost:6379/15")
-    end
 end
