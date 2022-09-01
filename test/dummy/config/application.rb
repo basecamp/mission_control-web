@@ -15,6 +15,7 @@ module Dummy
     config.action_controller.include_all_helpers = false
 
     MissionControl::Web.configuration.redis = Redis.new
+    MissionControl::Web.configuration.administered_applications = [ { name: "Mission Control Web Dummy", redis: Redis.new } ]
 
     # Configuration for the application, engines, and railties goes here.
     #

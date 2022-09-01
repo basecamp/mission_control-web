@@ -4,6 +4,7 @@ class MissionControl::Web::Configuration
   attribute :enabled, :boolean, default: true
 
   attr_writer :redis
+  attr_accessor :administered_applications
 
   def disabled?
     !enabled

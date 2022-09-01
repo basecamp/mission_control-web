@@ -45,6 +45,6 @@ class MissionControl::Web::RoutesController < MissionControl::Web::ApplicationCo
     end
 
     def route_params
-      params.require(:route).permit(:name, :pattern, :enabled)
+      params.require(:route).permit(:mission_control_web_application_id, :name, :pattern, :enabled)
     end
 end

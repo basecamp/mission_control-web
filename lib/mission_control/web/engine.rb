@@ -6,6 +6,12 @@ module MissionControl
       initializer "mission_control-web.add_middleware" do |app|
         app.middleware.use MissionControl::Web::RequestFilterMiddleware
       end
+
+      config.after_initialize do
+        MissionControl::Web.configuration.administered_applications.each do |application|
+          MissionControl::Web::Application.find_or_create_by!(name: application[:name])
+        end
+      end
     end
   end
 end

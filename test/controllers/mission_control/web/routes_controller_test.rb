@@ -19,7 +19,7 @@ class MissionControl::Web::RoutesControllerTest < ActionDispatch::IntegrationTes
 
   test "should create route" do
     assert_difference("MissionControl::Web::Route.count") do
-      post routes_url, params: { route: { enabled: @route.enabled, name: @route.name, pattern: "/posts/123" } }
+      post routes_url, params: { route: { mission_control_web_application_id: @route.mission_control_web_application.id, enabled: @route.enabled, name: @route.name, pattern: "/posts/123" } }
     end
 
     assert_redirected_to route_url(MissionControl::Web::Route.last)
