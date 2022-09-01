@@ -11,7 +11,7 @@ class MissionControl::WebTest < ActiveSupport::TestCase
     MissionControl::Web.configuration.redis = Redis.new(host: "0100::/64") # try to connect to the IPv6 black hole
 
     assert_raises(Redis::CannotConnectError) do
-      disable_route "/posts/123"
+      MissionControl::Web::Route.disabled?("/posts/123")
     end
 
     MissionControl::Web.configuration.redis = original_redis

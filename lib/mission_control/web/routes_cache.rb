@@ -28,6 +28,11 @@ class MissionControl::Web::RoutesCache
       redis.sadd redis_key, route.pattern.to_s
     end
 
+    def redis
+      MissionControl::Web.configuration.administered_applications.
+        detect { |application| application[:name] == application_name }&.dig(:redis)
+    end
+
     def redis_key
       "mission_control_web_#{application_name.parameterize}_disabled_patterns"
     end
@@ -35,7 +40,7 @@ class MissionControl::Web::RoutesCache
     def all_disabled_patterns
       memoize(ttl: MissionControl::Web.configuration.routes_cache_ttl) do
         # Using Redis client rather than Kredis as request interception with a middleware is performance-critical.
-        redis.smembers redis_key
+        MissionControl::Web.redis.smembers redis_key
       end
     end
 
