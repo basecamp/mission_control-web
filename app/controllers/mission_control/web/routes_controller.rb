@@ -2,7 +2,7 @@ class MissionControl::Web::RoutesController < MissionControl::Web::ApplicationCo
   before_action :set_route, only: %i[ show edit update destroy ]
 
   def index
-    @routes = MissionControl::Web::Route.all
+    @routes = MissionControl::Web::Route.includes(:application)
   end
 
   def show
