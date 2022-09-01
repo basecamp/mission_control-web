@@ -47,7 +47,7 @@ class FakeRedisWithCallCounter
 
   def smembers(key)
     self.smembers_call_count += 1
-    [ ]
+    []
   end
 
   def flushdb; end
