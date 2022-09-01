@@ -1,5 +1,5 @@
 posts:
-  mission_control_web_application: dummy_app
+  application: dummy_app
   name: Posts
   pattern: "/posts"
   enabled: false
