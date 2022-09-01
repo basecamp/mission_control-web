@@ -26,7 +26,7 @@ class MissionControl::Web::RoutesCache
 
     def all_disabled_patterns
       memoize_with_expiry(:all_disabled_patterns, MissionControl::Web.configuration.routes_cache_ttl) do
-        # Using Redis client rather than Kredis as request interception with a middlware is performance-critical.
+        # Using Redis client rather than Kredis as request interception with a middleware is performance-critical.
         MissionControl::Web.redis.smembers REDIS_KEY
       end
     end
