@@ -2,6 +2,11 @@
   <%= render partial: "form_errors", locals: { model: route } %>
 
   <div class="field">
+    <%= form.label :application_id %>
+    <%= form.select :application_id, MissionControl::Web::Application.all.map { |app| [ app.name, app.id ] } %>
+  </div>
+
+  <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
