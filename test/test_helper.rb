@@ -27,7 +27,7 @@ class ActiveSupport::TestCase
   end
 
   teardown do
-    MissionControl::Web.configuration.restore_attributes
+    MissionControl::Web.configuration.restore_attributes([ :enabled ])
 
     MissionControl::Web.redis.flushdb
   end

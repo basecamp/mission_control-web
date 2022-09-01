@@ -1,5 +1,9 @@
 class MissionControl::Web::RoutesCache
-  REDIS_KEY = :mission_control_web_disabled_patterns
+  delegate :redis, to: MissionControl::Web
+
+  def initialize(application_name: MissionControl::Web.configuration.application_name)
+    @application_name = application_name
+  end
 
   def put(route)
     if route.disabled?
@@ -10,7 +14,7 @@ class MissionControl::Web::RoutesCache
   end
 
   def remove(route)
-    MissionControl::Web.redis.srem REDIS_KEY, route.pattern.to_s
+    redis.srem redis_key, route.pattern.to_s
   end
 
   def disabled?(path)
@@ -18,12 +22,18 @@ class MissionControl::Web::RoutesCache
   end
 
   private
+    attr_reader :application_name
+
     def add(route)
-      MissionControl::Web.redis.sadd REDIS_KEY, route.pattern.to_s
+      redis.sadd redis_key, route.pattern.to_s
     end
 
     def all_disabled_patterns
       # Using Redis client rather than Kredis as request interception with a middlware is performance-critical.
-      MissionControl::Web.redis.smembers REDIS_KEY
+      redis.smembers redis_key
+    end
+
+    def redis_key
+      "mission_control_web_#{application_name.underscore}_disabled_patterns"
     end
 end

@@ -8,6 +8,8 @@ module MissionControl
       end
 
       config.after_initialize do
+        MissionControl::Web.configuration.application_name = ::Rails.application.class.module_parent.to_s
+
         MissionControl::Web.configuration.administered_applications.each do |application|
           MissionControl::Web::Application.find_or_create_by!(name: application[:name])
         end

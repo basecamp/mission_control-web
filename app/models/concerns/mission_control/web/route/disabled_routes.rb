@@ -22,4 +22,8 @@ module MissionControl::Web::Route::DisabledRoutes
     def remove_from_cache
       routes_cache.remove(self)
     end
+
+    def routes_cache
+      MissionControl::Web::RoutesCache.new(application_name: application.name)
+    end
 end
