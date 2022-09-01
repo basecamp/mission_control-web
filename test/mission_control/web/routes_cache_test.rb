@@ -20,8 +20,7 @@ class MissionControl::Web::RoutesCacheTest < ActiveSupport::TestCase
   end
 
   test "Redis access is cached with a TTL" do
-    original_cache_ttl = MissionControl::Web.configuration.cache_ttl
-    MissionControl::Web.configuration.cache_ttl = 10.seconds
+    MissionControl::Web.configuration.routes_cache_ttl = 10.seconds
     MissionControl::Web.configuration.redis = fake_redis = FakeRedisWithCallCounter.new
 
     100.times do
@@ -29,13 +28,10 @@ class MissionControl::Web::RoutesCacheTest < ActiveSupport::TestCase
     end
 
     assert_equal 1, fake_redis.smembers_call_count
-
-    MissionControl::Web.configuration.cache_ttl = original_cache_ttl
   end
 
   test "the TTL is respected" do
-    original_cache_ttl = MissionControl::Web.configuration.cache_ttl
-    MissionControl::Web.configuration.cache_ttl = 10.seconds
+    MissionControl::Web.configuration.routes_cache_ttl = 10.seconds
     MissionControl::Web.configuration.redis = fake_redis = FakeRedisWithCallCounter.new
 
     @routes.disabled?("/posts/123")
@@ -43,8 +39,6 @@ class MissionControl::Web::RoutesCacheTest < ActiveSupport::TestCase
     @routes.disabled?("/posts/123")
 
     assert_equal 2, fake_redis.smembers_call_count
-
-    MissionControl::Web.configuration.cache_ttl = original_cache_ttl
   end
 end
 
@@ -53,7 +47,7 @@ class FakeRedisWithCallCounter
 
   def smembers(key)
     self.smembers_call_count += 1
-    []
+    [ ]
   end
 
   def flushdb; end

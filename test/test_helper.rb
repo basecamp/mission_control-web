@@ -23,13 +23,18 @@ class ActiveSupport::TestCase
   include RouteTestHelpers, PerformanceTestHelpers
 
   setup do
-    MissionControl::Web.configuration.cache_ttl = 0.seconds
-    MissionControl::Web.configuration.redis = Redis.new(url: "redis://localhost:6379/15")
+    MissionControl::Web.configuration.routes_cache_ttl = 0.seconds
+    configure_redis
   end
 
   teardown do
     MissionControl::Web.configuration.restore_attributes
-
+    configure_redis
     MissionControl::Web.redis.flushdb
   end
+
+  private
+    def configure_redis
+      MissionControl::Web.configuration.redis = Redis.new(url: "redis://localhost:6379/15")
+    end
 end

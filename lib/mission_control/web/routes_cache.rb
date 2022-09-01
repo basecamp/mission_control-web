@@ -1,5 +1,5 @@
 class MissionControl::Web::RoutesCache
-  include MissionControl::Web::MemoizeWithTtl
+  include MissionControl::Web::MemoizeWithExpiry
 
   REDIS_KEY = :mission_control_web_disabled_patterns
 
@@ -25,8 +25,8 @@ class MissionControl::Web::RoutesCache
     end
 
     def all_disabled_patterns
-      # Using Redis client rather than Kredis as request interception with a middlware is performance-critical.
-      memoize_with_ttl(:all_disabled_patterns) do
+      memoize_with_expiry(:all_disabled_patterns, MissionControl::Web.configuration.routes_cache_ttl) do
+        # Using Redis client rather than Kredis as request interception with a middlware is performance-critical.
         MissionControl::Web.redis.smembers REDIS_KEY
       end
     end

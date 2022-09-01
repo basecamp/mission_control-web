@@ -1,5 +1,5 @@
-module MissionControl::Web::MemoizeWithTtl
-  def memoize_with_ttl(name, ttl_seconds = MissionControl::Web.configuration.cache_ttl)
+module MissionControl::Web::MemoizeWithExpiry
+  def memoize_with_expiry(name, ttl_seconds)
     value_ivar, expiry_ivar = :"@#{name}", :"@#{name}_expires_at"
     memoized_value, expiry  = instance_variable_get(value_ivar), instance_variable_get(expiry_ivar)
 
