@@ -41,6 +41,8 @@ MissionControl::Web.configuration.application_name = "My Rails App"
 
 ### Administered applications
 
+By default the name of the current Rails application, and the configured Redis will be used. But you can override this:
+
 ```
 MissionControl::Web.configuration.administered_applications = [ { name: "My Rails App", redis: Redis.new } ]
 ```

@@ -12,7 +12,7 @@ class MissionControl::Web::RoutesCache
   end
 
   def remove(route)
-    redis.srem redis_key, route.pattern.to_s
+    application_redis.srem redis_key, route.pattern.to_s
   end
 
   def disabled?(path)
@@ -23,7 +23,7 @@ class MissionControl::Web::RoutesCache
     attr_reader :application_name
 
     def add(route)
-      redis.sadd redis_key, route.pattern.to_s
+      application_redis.sadd redis_key, route.pattern.to_s
     end
 
     def application_redis
