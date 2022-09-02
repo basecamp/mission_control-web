@@ -1,25 +1,26 @@
 <div class="level">
   <div class="level-left">
-    <h2 class="subtitle level-item">Routes</h2>
+    <h2 class="subtitle level-item"><%= @application.name %> - Routes</h2>
   </div>
   <div class="level-right">
-    <%= link_to "New Route", new_route_path, class: "button is-primary level-item" %>
+    <%= link_to "New Route", new_application_route_path(@application), class: "button is-primary level-item" %>
   </div>
 </div>
+
+<%= render "current_application_selector" %>
 
 <div class="content">
   <% if @routes.any? %>
     <table class="table">
       <thead>
         <tr>
-          <th>Application</th>
           <th>Name</th>
           <th>Pattern</th>
           <th>Traffic Status</th>
         </tr>
       </thead>
       <tbody>
-        <%= render @routes %>
+        <%= render @routes, application: @application %>
       </tbody>
     </table>
   <% else %>

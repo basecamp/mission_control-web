@@ -1,10 +1,6 @@
 <tr>
   <td>
-    <%= route.application.name %>
-  </td>
-
-  <td>
-    <%= link_to route.name, route %>
+    <%= link_to route.name, [ application, route ] %>
   </td>
 
   <td>

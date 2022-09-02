@@ -6,13 +6,15 @@ loader.setup
 
 require "mission_control/web/engine"
 require "redis"
+require "active_support/core_ext/module/attribute_accessors_per_thread"
 
 module MissionControl
   module Web
     mattr_reader :configuration, default: Configuration.new
+    thread_mattr_accessor :current_redis
 
     def self.redis
-      configuration.redis
+      current_redis || configuration.redis
     end
   end
 end

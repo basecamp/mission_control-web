@@ -1,10 +1,5 @@
-<%= form_with(model: route) do |form| %>
+<%= form_with(model: [ route.application, route] ) do |form| %>
   <%= render partial: "form_errors", locals: { model: route } %>
-
-  <div class="field">
-    <%= form.label_default :mission_control_web_application_id, "Application" %>
-    <%= form.select :mission_control_web_application_id, MissionControl::Web::Application.all.map { |app| [ app.name, app.id ] } %>
-  </div>
 
   <div class="field">
     <%= form.label_default :name %>
@@ -25,7 +20,7 @@
     <%= form.submit_primary %>
 
     <%= form.div_control do %>
-      <%= link_to "Cancel", routes_path, class: "button is-link is-light"  %>
+      <%= link_to "Cancel", application_routes_path(route.application), class: "button is-link is-light"  %>
     <% end %>
   </div>
 <% end %>

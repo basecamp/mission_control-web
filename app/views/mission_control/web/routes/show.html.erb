@@ -1,7 +1,7 @@
 <nav class="breadcrumb" aria-label="breadcrumbs">
   <ul>
-    <li><%= link_to "Routes", routes_path %></li>
-    <li class="is-active"><%= link_to @route.name, @route%></li>
+    <li><%= link_to @application.name, application_routes_path(@application) %></li>
+    <li class="is-active"><%= link_to @route.name, [ @application, @route ] %></li>
   </ul>
 </nav>
 
@@ -36,7 +36,7 @@
 
 <div class="level">
   <div class="level-left">
-    <%= link_to "Edit", edit_route_path(@route), class: "button level-item" %>
-    <%= button_to "Delete", @route, method: :delete, class: "button is-danger level-item" %>
+    <%= link_to "Edit", edit_application_route_path(@application, @route), class: "button level-item" %>
+    <%= button_to "Delete", [ @application, @route ], method: :delete, class: "button is-danger level-item" %>
   </div>
 </div>

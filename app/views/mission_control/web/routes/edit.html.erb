@@ -1,6 +1,6 @@
 <nav class="breadcrumb" aria-label="breadcrumbs">
   <ul>
-    <li><%= link_to "Routes", routes_path %></li>
+    <li><%= link_to @application.name, application_routes_path(@application) %></li>
     <li class="is-active"><a>Editing <%= @route.name %></a></li>
   </ul>
 </nav>

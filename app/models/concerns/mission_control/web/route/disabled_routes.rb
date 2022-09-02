@@ -2,7 +2,7 @@ module MissionControl::Web::Route::DisabledRoutes
   extend ActiveSupport::Concern
 
   included do
-    class_attribute :routes_cache, default: MissionControl::Web::RoutesCache.new, instance_accessor: false
+    class_attribute :routes_cache, default: MissionControl::Web::RoutesCache.new
 
     after_save    :update_in_cache
     after_destroy :remove_from_cache
@@ -21,9 +21,5 @@ module MissionControl::Web::Route::DisabledRoutes
 
     def remove_from_cache
       routes_cache.remove(self)
-    end
-
-    def routes_cache
-      MissionControl::Web::RoutesCache.new(application_name: application.name)
     end
 end
