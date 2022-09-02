@@ -60,6 +60,12 @@ Performance tests can be run in the "profile" environment for more consistent re
 RAILS_ENV=profile rake test:performance
 ```
 
+## Resiliency
+
+If Redis is down (or raises any instance of Redis::BaseConnectionError), Mission Control Web middleware will fail-open.
+
+It's recommended to also consider using a resilient Redis client with a circuit-breaker. See [Semian](https://github.com/Shopify/semian).
+
 ## Contributing
 Contribution directions go here.
 

@@ -8,6 +8,7 @@ gemspec
 gem "sqlite3"
 
 gem "sprockets-rails"
+
 gem "rubocop-37signals", bc: "house-style", require: false
 
 group :development do
