@@ -1,8 +1,9 @@
-<%= form_with(url: current_application_path, method: :put) do |form| %>
+<%= form_with(url: current_application_path, method: :put, data: { controller: "form" }) do |form| %>
   <div class="field">
     <%= form.select_with_label :current_application_id,
           application_select_options,
-          selected: MissionControl::Web::Current.application.id %>
+          { selected: MissionControl::Web::Current.application.id },
+          data: { action: "change->form#submit" } %>
   </div>
 
   <div class="field is-grouped">

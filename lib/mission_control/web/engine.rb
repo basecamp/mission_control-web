@@ -1,5 +1,6 @@
 require "importmap-rails"
 require "turbo-rails"
+require "stimulus-rails"
 
 module MissionControl
   module Web
