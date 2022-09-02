@@ -39,13 +39,6 @@ By default the name of the current Rails application, and the configured Redis w
 MissionControl::Web.configuration.administered_applications = [ { name: "My Rails App", redis: Redis.new } ]
 ```
 
-If you are using the engine to administer the host app where the engine is mounted, it will automatically detect the
-name of the application, but you can configure that with:
-
-```rb
-MissionControl::Web.configuration.host_application_name = "My Rails App"
-```
-
 ### Disable
 
 Useful for disabling the Mission Control - Web request intercept middleware on a per-application or per-environment basis.

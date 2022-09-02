@@ -8,8 +8,6 @@ module MissionControl
       end
 
       config.after_initialize do
-        MissionControl::Web.configuration.host_application_name = ::Rails.application.class.module_parent.to_s
-
         MissionControl::Web.configuration.administered_applications.each do |application|
           if MissionControl::Web::Application.table_exists?
             MissionControl::Web::Application.find_or_create_by!(name: application[:name])

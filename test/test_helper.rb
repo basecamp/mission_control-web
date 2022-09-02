@@ -33,7 +33,7 @@ class ActiveSupport::TestCase
   end
 
   teardown do
-    MissionControl::Web.configuration.restore_attributes([ :enabled ])
+    MissionControl::Web.configuration.restore_attributes
     MissionControl::Web.configuration.redis = @original_redis
     MissionControl::Web.configuration.administered_applications = @original_administered_applications
 
