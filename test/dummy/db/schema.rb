@@ -23,8 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_095453) do
     t.boolean "enabled", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "mission_control_web_application_id", null: false
-    t.index ["mission_control_web_application_id"], name: "index_mission_control_web_routes_on_application_id"
+    t.integer "application_id", null: false
+    t.index ["application_id"], name: "index_mission_control_web_routes_on_application_id"
     t.index ["pattern"], name: "index_mission_control_web_routes_on_pattern", unique: true
   end
 
@@ -34,5 +34,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_095453) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "mission_control_web_routes", "mission_control_web_applications"
+  add_foreign_key "mission_control_web_routes", "mission_control_web_applications", column: "application_id"
 end

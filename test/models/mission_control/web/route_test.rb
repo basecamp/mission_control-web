@@ -3,7 +3,7 @@ require "test_helper"
 class MissionControl::Web::RouteTest < ActiveSupport::TestCase
   setup do
     @route = MissionControl::Web::Route.create!(
-      mission_control_web_application_id: ActiveRecord::FixtureSet.identify(:dummy_app),
+      application_id: ActiveRecord::FixtureSet.identify(:dummy_app),
       name: "Chat",
       pattern: "/campfire",
       enabled: false
