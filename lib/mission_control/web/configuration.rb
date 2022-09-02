@@ -16,6 +16,11 @@ class MissionControl::Web::Configuration
   end
 
   def administered_applications
-    @administered_applications || [ { name: host_application_name, redis: redis } ]
+    @administered_applications || [ default_host_app ]
   end
+
+  private
+    def default_host_app
+      { name: host_application_name, redis: redis }
+    end
 end
