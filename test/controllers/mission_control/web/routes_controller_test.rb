@@ -9,7 +9,14 @@ class MissionControl::Web::RoutesControllerTest < ActionDispatch::IntegrationTes
 
   test "should get index" do
     get application_routes_url(@route.application)
+
     assert_response :success
+  end
+
+  test "when acting as root path should redirect to first application's routes" do
+    get root_url
+
+    assert_redirected_to application_routes_url(MissionControl::Web::Application.first)
   end
 
   test "should get new" do
