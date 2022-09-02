@@ -3,7 +3,12 @@ require "test_helper"
 class MissionControl::Web::RoutesCacheTest < ActiveSupport::TestCase
   setup do
     @routes = MissionControl::Web::RoutesCache.new
-    @route = MissionControl::Web::Route.new(pattern: "/posts/123", enabled: false)
+    @route = MissionControl::Web::Route.create!(
+      application: MissionControl::Web::Application.new(name: "Dummy"),
+      name: "Posts show",
+      pattern: "/posts/123",
+      enabled: false
+    )
   end
 
   test "disabled after disabling a route" do

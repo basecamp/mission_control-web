@@ -29,6 +29,16 @@ class MissionControl::Web::BulmaFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
+  def select_with_label(method, choices = nil, options = {}, html_options = {}, &block)
+    label_default(method) + select(method, choices, options, html_options, &block)
+  end
+
+  def select(method, choices = nil, options = {}, html_options = {}, &block)
+    label(method, class: "select") do
+      super
+    end
+  end
+
   private
     def merge_class_attribute_value(options, value)
       new_options = options.clone

@@ -1,4 +1,5 @@
 posts:
+  application: dummy_app
   name: Posts
   pattern: "/posts"
   enabled: false

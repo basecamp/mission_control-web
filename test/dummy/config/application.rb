@@ -6,7 +6,7 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 require "mission_control/web"
-
+require "redis"
 module Dummy
   class Application < Rails::Application
     config.load_defaults Rails::VERSION::STRING.to_f
@@ -14,7 +14,7 @@ module Dummy
     # For compatibility with applications that use this config
     config.action_controller.include_all_helpers = false
 
-    MissionControl::Web.configuration.redis = Redis.new
+    MissionControl::Web.configuration.redis = Redis.new(url: "redis://localhost:6379/15")
 
     # Configuration for the application, engines, and railties goes here.
     #

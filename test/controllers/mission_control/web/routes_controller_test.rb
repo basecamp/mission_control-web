@@ -8,43 +8,50 @@ class MissionControl::Web::RoutesControllerTest < ActionDispatch::IntegrationTes
   end
 
   test "should get index" do
-    get routes_url
+    get application_routes_url(@route.application)
+
     assert_response :success
   end
 
+  test "when acting as root path should redirect to first application's routes" do
+    get root_url
+
+    assert_redirected_to application_routes_url(MissionControl::Web::Application.first)
+  end
+
   test "should get new" do
-    get new_route_url
+    get new_application_route_url(@route.application)
     assert_response :success
   end
 
   test "should create route" do
     assert_difference("MissionControl::Web::Route.count") do
-      post routes_url, params: { route: { enabled: @route.enabled, name: @route.name, pattern: "/posts/123" } }
+      post application_routes_url(@route.application), params: { route: { enabled: @route.enabled, name: @route.name, pattern: "/posts/123" } }
     end
 
-    assert_redirected_to route_url(MissionControl::Web::Route.last)
+    assert_redirected_to application_route_url(@route.application, MissionControl::Web::Route.last)
   end
 
   test "should show route" do
-    get route_url(@route)
+    get application_route_url(@route.application, @route)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_route_url(@route)
+    get edit_application_route_url(@route.application, @route)
     assert_response :success
   end
 
   test "should update route" do
-    patch route_url(@route), params: { route: { enabled: @route.enabled, name: @route.name, pattern: @route.pattern } }
-    assert_redirected_to route_url(@route)
+    patch application_route_url(@route.application, @route), params: { route: { enabled: @route.enabled, name: @route.name, pattern: @route.pattern } }
+    assert_redirected_to application_route_url(@route.application, @route)
   end
 
   test "should destroy route" do
     assert_difference("MissionControl::Web::Route.count", -1) do
-      delete route_url(@route)
+      delete application_route_url(@route.application, @route)
     end
 
-    assert_redirected_to routes_url
+    assert_redirected_to application_routes_url(@route.application)
   end
 end

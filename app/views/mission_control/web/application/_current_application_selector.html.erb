@@ -1,0 +1,11 @@
+<%= form_with(url: current_application_path, method: :put) do |form| %>
+  <div class="field">
+    <%= form.select_with_label :current_application_id,
+          application_select_options,
+          selected: MissionControl::Web::Current.application.id %>
+  </div>
+
+  <div class="field is-grouped">
+    <%= form.submit_primary "Switch application" %>
+  </div>
+<% end %>

@@ -6,7 +6,6 @@ git_source(:bc)     { |repo| "https://github.com/basecamp/#{repo}" }
 gemspec
 
 gem "sqlite3"
-gem "redis"
 
 gem "sprockets-rails"
 
@@ -16,14 +15,16 @@ group :development do
   gem "web-console"
 end
 
-group :development, :test do
-  gem "puma"
+group :development, :test, :profile do
   gem "byebug"
+  gem "puma"
+  gem "redis"
 end
 
 group :test, :profile do
   gem "benchmark-ips"
   gem "benchmark-memory"
+  gem "mocha"
 end
 
 # Start debugger with binding.b [https://github.com/ruby/debug]

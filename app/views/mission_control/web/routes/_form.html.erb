@@ -1,4 +1,4 @@
-<%= form_with(model: route) do |form| %>
+<%= form_with(model: [ route.application, route] ) do |form| %>
   <%= render partial: "form_errors", locals: { model: route } %>
 
   <div class="field">
@@ -20,7 +20,7 @@
     <%= form.submit_primary %>
 
     <%= form.div_control do %>
-      <%= link_to "Cancel", routes_path, class: "button is-link is-light"  %>
+      <%= link_to "Cancel", application_routes_path(route.application), class: "button is-link is-light"  %>
     <% end %>
   </div>
 <% end %>
