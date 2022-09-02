@@ -40,6 +40,12 @@ class MissionControl::Web::RoutesCacheTest < ActiveSupport::TestCase
 
     assert_equal 2, fake_redis.smembers_call_count
   end
+
+  test "fails open when Redis is down" do
+    MissionControl::Web.configuration.redis = FakeRedisDown.new
+
+    assert_not @routes.disabled?("/posts/123")
+  end
 end
 
 class FakeRedisWithCallCounter
@@ -48,6 +54,14 @@ class FakeRedisWithCallCounter
   def smembers(key)
     self.smembers_call_count += 1
     []
+  end
+
+  def flushdb; end
+end
+
+class FakeRedisDown
+  def smembers(key)
+    raise Redis::ConnectionError
   end
 
   def flushdb; end

@@ -27,6 +27,8 @@ class MissionControl::Web::RoutesCache
         # Using Redis client rather than Kredis as request interception with a middleware is performance-critical.
         MissionControl::Web.redis.smembers REDIS_KEY
       end
+    rescue Redis::BaseConnectionError
+      []
     end
 
     def memoize(ttl:)
