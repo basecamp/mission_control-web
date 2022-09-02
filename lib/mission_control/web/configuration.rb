@@ -1,9 +1,9 @@
 class MissionControl::Web::Configuration
   include ActiveModel::Attributes, ActiveModel::Dirty
 
-  attribute :enabled,          :boolean, default: true
-  attribute :routes_cache_ttl, :integer, default: 10.seconds
-  attribute :application_name, :string
+  attribute :enabled,               :boolean, default: true
+  attribute :routes_cache_ttl,      :integer, default: 10.seconds
+  attribute :host_application_name, :string
 
   attr_writer :redis, :administered_applications
 
@@ -16,6 +16,6 @@ class MissionControl::Web::Configuration
   end
 
   def administered_applications
-    @administered_applications || [ { name: application_name, redis: redis } ]
+    @administered_applications || [ { name: host_application_name, redis: redis } ]
   end
 end

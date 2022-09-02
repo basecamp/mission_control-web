@@ -27,44 +27,43 @@ $ gem install mission_control-web
 
 Configure Mission Control - Web with a Redis client.
 
-```
+```rb
 MissionControl::Web.configuration.redis = Redis.new(url: "redis://server:6379")
-```
-
-### Application name
-
-By default the name of the Rails application will be automatically detected. But you can override this:
-
-```
-MissionControl::Web.configuration.application_name = "My Rails App"
 ```
 
 ### Administered applications
 
 By default the name of the current Rails application, and the configured Redis will be used. But you can override this:
 
-```
+```rb
 MissionControl::Web.configuration.administered_applications = [ { name: "My Rails App", redis: Redis.new } ]
+```
+
+If you are using the engine to administer the host app where the engine is mounted, it will automatically detect the
+name of the application, but you can configure that with:
+
+```rb
+MissionControl::Web.configuration.host_application_name = "My Rails App"
 ```
 
 ### Disable
 
 Useful for disabling the Mission Control - Web request intercept middleware on a per-application or per-environment basis.
 
-```
+```rb
 MissionControl::Web.configuration.enabled = false
 ```
 
 ## Testing
 Run:
 
-```
+```sh
 rake test
 ```
 
 Performance tests can be run in the "profile" environment for more consistent results with:
 
-```
+```sh
 RAILS_ENV=profile rake test:performance
 ```
 
