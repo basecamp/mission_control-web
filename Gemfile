@@ -6,7 +6,6 @@ git_source(:bc)     { |repo| "https://github.com/basecamp/#{repo}" }
 gemspec
 
 gem "sqlite3"
-gem "redis"
 
 gem "sprockets-rails"
 gem "rubocop-37signals", bc: "house-style", require: false
@@ -16,8 +15,9 @@ group :development do
 end
 
 group :development, :test do
-  gem "puma"
   gem "byebug"
+  gem "puma"
+  gem "redis"
 end
 
 group :test, :profile do
