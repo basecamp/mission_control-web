@@ -13,6 +13,9 @@ module MissionControl
     thread_mattr_accessor :current_redis
 
     def self.redis
+      puts "Current redis is #{current_redis}"
+      puts "Configured redis is #{configuration.redis}"
+
       current_redis || configuration.redis
     end
   end
