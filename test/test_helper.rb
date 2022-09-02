@@ -11,6 +11,8 @@ require "rails/test_help"
 require "helpers/performance_test_helpers"
 require "helpers/route_test_helpers"
 
+require "mocha/minitest"
+
 # Load fixtures from the engine
 if ActiveSupport::TestCase.respond_to?(:fixture_path=)
   ActiveSupport::TestCase.fixture_path = File.expand_path("fixtures", __dir__)

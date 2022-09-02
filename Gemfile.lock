@@ -108,6 +108,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.16.2)
+    mocha (1.11.2)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -222,6 +223,7 @@ DEPENDENCIES
   benchmark-memory
   byebug
   mission_control-web!
+  mocha
   puma
   redis
   rubocop
