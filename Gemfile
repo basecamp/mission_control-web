@@ -14,7 +14,7 @@ group :development do
   gem "web-console"
 end
 
-group :development, :test do
+group :development, :test, :profile do
   gem "byebug"
   gem "puma"
   gem "redis"
