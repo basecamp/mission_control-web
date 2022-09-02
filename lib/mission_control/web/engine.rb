@@ -6,6 +6,15 @@ module MissionControl
     class Engine < ::Rails::Engine
       isolate_namespace MissionControl::Web
 
+      config.mission_control = ActiveSupport::OrderedOptions.new
+      config.mission_control.web = ActiveSupport::OrderedOptions.new
+
+      initializer "mission_control-web.config" do
+        config.mission_control.web.each do |key, value|
+          MissionControl::Web.configuration.public_send("#{key}=", value)
+        end
+      end
+
       initializer "mission_control-web.add_middleware" do |app|
         app.middleware.use MissionControl::Web::RequestFilterMiddleware
       end
