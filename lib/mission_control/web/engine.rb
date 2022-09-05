@@ -6,7 +6,7 @@ module MissionControl
     class Engine < ::Rails::Engine
       isolate_namespace MissionControl::Web
 
-      config.mission_control = ActiveSupport::OrderedOptions.new
+      config.mission_control = ActiveSupport::OrderedOptions.new unless config.try(:mission_control)
       config.mission_control.web = ActiveSupport::OrderedOptions.new
 
       initializer "mission_control-web.config" do
