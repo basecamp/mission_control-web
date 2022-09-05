@@ -14,7 +14,7 @@ module Dummy
     # For compatibility with applications that use this config
     config.action_controller.include_all_helpers = false
 
-    MissionControl::Web.configuration.redis = Redis.new(url: "redis://localhost:6379/15")
+    config.mission_control.web.redis = Redis.new(url: "redis://localhost:6379/15")
 
     # Configuration for the application, engines, and railties goes here.
     #
