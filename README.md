@@ -39,12 +39,12 @@ config.mission_control.web.redis = Redis.new(url: "redis://server:6379")
 config.mission_control.web.administered_applications = [ { name: "My Rails App", redis: Redis.new } ]
 ```
 
-### Disable
+### Disable Middleware
 
 Useful for disabling the Mission Control - Web request intercept middleware on a per-application or per-environment basis.
 
 ```rb
-config.mission_control.web.enabled = false
+config.mission_control.web.middleware_enabled = false
 ```
 
 ## Testing

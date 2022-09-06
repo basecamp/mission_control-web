@@ -4,7 +4,7 @@ module MissionControl::Web
   class RequestFilterMiddlewarePerformanceTest < ActionDispatch::IntegrationTest
     test "performance overhead with middleware enabled is less than 23%" do
       baseline = -> {
-        MissionControl::Web.configuration.enabled = false
+        MissionControl::Web.configuration.middleware_enabled = false
 
         get posts_path
 
@@ -12,7 +12,7 @@ module MissionControl::Web
       }
 
       assert_slower_by_at_most 1.23, baseline: baseline do
-        MissionControl::Web.configuration.enabled = true
+        MissionControl::Web.configuration.middleware_enabled = true
 
         get posts_path
 
@@ -26,7 +26,7 @@ module MissionControl::Web
       }
 
       baseline = -> {
-        MissionControl::Web.configuration.enabled = false
+        MissionControl::Web.configuration.middleware_enabled = false
 
         get posts_path
 
@@ -34,7 +34,7 @@ module MissionControl::Web
       }
 
       assert_uses_more_memory_by_at_most 1.52, warmup: warmup, baseline: baseline do
-        MissionControl::Web.configuration.enabled = true
+        MissionControl::Web.configuration.middleware_enabled = true
 
         get posts_path
 

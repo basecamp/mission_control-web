@@ -17,7 +17,7 @@ module MissionControl::Web
     end
 
     test "requests to disabled routes are allowed when Mission Control Web is disabled" do
-      MissionControl::Web.configuration.enabled = false
+      MissionControl::Web.configuration.middleware_enabled = false
       disable_route "/posts/123"
 
       get post_path(123)

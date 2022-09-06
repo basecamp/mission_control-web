@@ -15,8 +15,10 @@ module MissionControl
         end
       end
 
-      initializer "mission_control-web.add_middleware" do |app|
-        app.middleware.use MissionControl::Web::RequestFilterMiddleware
+      initializer "mission_control-web.add_middleware", after: "mission_control-web.config" do |app|
+        if MissionControl::Web.configuration.middleware_enabled?
+          app.middleware.use MissionControl::Web::RequestFilterMiddleware
+        end
       end
 
       initializer "mission_control-web.assets" do |app|

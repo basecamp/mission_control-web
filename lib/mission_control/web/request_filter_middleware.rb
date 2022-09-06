@@ -5,7 +5,7 @@ module MissionControl::Web
     end
 
     def call(env)
-      return @app.call(env) if MissionControl::Web.configuration.disabled?
+      return @app.call(env) unless MissionControl::Web.configuration.middleware_enabled?
 
       request = Request.new(env)
 
