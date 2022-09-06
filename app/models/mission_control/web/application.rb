@@ -12,8 +12,8 @@ class MissionControl::Web::Application
       all.find { |application| application.id == id } || raise(MissionControl::Web::Errors::ResourceNotFound)
     end
 
-    def first!
-      all.first || raise(MissionControl::Web::Errors::ResourceNotFound)
+    def default
+      all.first or raise MissionControl::Web::Errors::ResourceNotFound
     end
   end
 
