@@ -3,6 +3,7 @@ class MissionControl::Web::Configuration
 
   attribute :enabled,               :boolean, default: true
   attribute :routes_cache_ttl,      :integer, default: 10.seconds
+  attribute :base_controller_class, :string,  default: "::ApplicationController"
 
   attr_writer :redis, :administered_applications
 
