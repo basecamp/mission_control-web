@@ -11,14 +11,14 @@ class MissionControl::Web::RoutesController < MissionControl::Web::ApplicationCo
   end
 
   def new
-    @route = @application.routes.build
+    @route = MissionControl::Web::Route.new(application: @application)
   end
 
   def edit
   end
 
   def create
-    @route = @application.routes.build(route_params)
+    @route = MissionControl::Web::Route.new(application_id: @application.id, **route_params)
 
     if @route.save
       redirect_to [ @application, @route ], notice: "Route was successfully created."

@@ -4,6 +4,6 @@ module MissionControl::Web::ApplicationsHelper
   end
 
   def selected_application?(application)
-    MissionControl::Web::Current.application.name == application.name
+    MissionControl::Web::Current.application.id == application.id
   end
 end

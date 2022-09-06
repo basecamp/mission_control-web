@@ -4,7 +4,7 @@ class MissionControl::Web::RoutesCacheTest < ActiveSupport::TestCase
   setup do
     @routes = MissionControl::Web::RoutesCache.new
     @route = MissionControl::Web::Route.create!(
-      application: MissionControl::Web::Application.new(name: "Dummy"),
+      application_id: "dummy-app",
       name: "Posts show",
       pattern: "/posts/123",
       enabled: false
