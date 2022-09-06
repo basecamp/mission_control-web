@@ -35,8 +35,6 @@ config.mission_control.web.redis = Redis.new(url: "redis://server:6379")
 
 ### Administered applications
 
-By default the name of the current Rails application, and the configured Redis will be used. But you can override this:
-
 ```rb
 config.mission_control.web.administered_applications = [ { name: "My Rails App", redis: Redis.new } ]
 ```

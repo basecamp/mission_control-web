@@ -28,14 +28,6 @@ module MissionControl
         app.config.importmap.paths << root.join("config/importmap.rb")
         app.config.importmap.cache_sweepers << root.join("app/javascript")
       end
-
-      config.after_initialize do
-        MissionControl::Web.configuration.administered_applications.each do |application|
-          if MissionControl::Web::Application.table_exists?
-            MissionControl::Web::Application.find_or_create_by!(name: application[:name])
-          end
-        end
-      end
     end
   end
 end

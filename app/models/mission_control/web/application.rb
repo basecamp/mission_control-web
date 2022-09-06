@@ -1,8 +1,29 @@
-class MissionControl::Web::Application < ApplicationRecord
-  has_many :routes, class_name: "MissionControl::Web::Route"
+class MissionControl::Web::Application
+  include ActiveModel::Model
 
-  def redis
-    MissionControl::Web.configuration.administered_applications.
-      detect { |application| application[:name] == name }&.dig(:redis)
+  attr_accessor :name, :redis
+
+  class << self
+    def all
+      MissionControl::Web.configuration.administered_applications.map { |app| new(**app) }
+    end
+
+    def find(id)
+      all.find { |application| application.id == id } or raise MissionControl::Web::Errors::ResourceNotFound
+    end
+
+    def default
+      all.first or raise MissionControl::Web::Errors::ResourceNotFound
+    end
+  end
+
+  def id
+    name.parameterize
+  end
+
+  alias to_param id
+
+  def routes
+    MissionControl::Web::Route.where(application_id: id)
   end
 end

@@ -25,7 +25,7 @@ class ActiveSupport::TestCase
   include RouteTestHelpers, PerformanceTestHelpers
 
   MissionControl::Web.configuration.redis = redis = Redis.new(url: "redis://localhost:6379/15")
-  MissionControl::Web.configuration.administered_applications = [ { name: "Dummy", redis: redis } ]
+  MissionControl::Web.configuration.administered_applications = [ { name: "Dummy App", redis: redis } ]
 
   setup do
     @original_redis = MissionControl::Web.configuration.redis

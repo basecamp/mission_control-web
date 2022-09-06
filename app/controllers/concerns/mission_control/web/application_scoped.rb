@@ -8,7 +8,7 @@ module MissionControl::Web::ApplicationScoped
 
   private
     def ensure_application_scope
-      redirect_to application_routes_path(MissionControl::Web::Application.first!) unless params[:application_id]
+      redirect_to application_routes_path(MissionControl::Web::Application.default) unless params[:application_id]
     end
 
     def set_application
