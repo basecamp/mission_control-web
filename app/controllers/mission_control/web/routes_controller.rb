@@ -11,7 +11,7 @@ class MissionControl::Web::RoutesController < MissionControl::Web::ApplicationCo
   end
 
   def new
-    @route = MissionControl::Web::Route.new(application: @application)
+    @route = MissionControl::Web::Route.new(application_id: @application.id)
   end
 
   def edit
