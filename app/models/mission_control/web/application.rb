@@ -9,7 +9,7 @@ class MissionControl::Web::Application
     end
 
     def find(id)
-      all.find { |application| application.id == id } || raise(MissionControl::Web::Errors::ResourceNotFound)
+      all.find { |application| application.id == id } or raise MissionControl::Web::Errors::ResourceNotFound
     end
 
     def default
