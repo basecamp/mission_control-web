@@ -14,7 +14,7 @@ PATH
     mission_control-web (0.1.0)
       importmap-rails
       rails (>= 7.0.3.1)
-      turbo-rails
+      turbo-rails (< 7)
 
 GEM
   remote: https://rubygems.org/
