@@ -26,7 +26,7 @@ module MissionControl::Web
     end
 
     test "an exception is raised when configured to do so" do
-      MissionControl::Web.configuration.middleware_raises_error = true
+      MissionControl::Web.configuration.middleware_serves_503_page = false
       disable_route "/posts/123"
 
       assert_raises MissionControl::Web::Errors::ServiceUnavailable do

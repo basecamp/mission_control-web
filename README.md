@@ -46,7 +46,7 @@ will bubble up to be handled by Rails exception handling. You can then create a 
 that your Rails app will serve when Mission Control - Web blocks requests.
 
 ```rb
-config.mission_control.web.middleware_raises_error = true
+config.mission_control.web.middleware_serves_503_page = false
 ```
 
 ### Disable Middleware

@@ -32,7 +32,7 @@ module MissionControl
       end
 
       config.after_initialize do
-        if MissionControl::Web.configuration.middleware_raises_error?
+        unless MissionControl::Web.configuration.middleware_serves_503_page?
           ActionDispatch::ExceptionWrapper.rescue_responses.merge!("MissionControl::Web::Errors::ServiceUnavailable" => :service_unavailable)
         end
       end
