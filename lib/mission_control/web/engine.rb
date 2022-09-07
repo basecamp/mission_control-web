@@ -30,6 +30,12 @@ module MissionControl
         app.config.importmap.paths << root.join("config/importmap.rb")
         app.config.importmap.cache_sweepers << root.join("app/javascript")
       end
+
+      config.after_initialize do
+        unless MissionControl::Web.configuration.middleware_serves_503_page?
+          ActionDispatch::ExceptionWrapper.rescue_responses.merge!("MissionControl::Web::Errors::ServiceUnavailable" => :service_unavailable)
+        end
+      end
     end
   end
 end
