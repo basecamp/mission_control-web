@@ -1,13 +1,15 @@
-<div class="application-selector navbar-item has-dropdown is-hoverable">
-  <a class="navbar-link">
-    <%= MissionControl::Web::Current.application.name %>
-  </a>
+<% if selectable_applications.any? %>
+  <div class="application-selector navbar-item has-dropdown is-hoverable">
+    <a class="navbar-link">
+      <%= MissionControl::Web::Current.application.name %>
+    </a>
 
-  <div class="navbar-dropdown">
-    <% selectable_applications.each do |application| %>
-      <%= link_to application_routes_path(application), class: "navbar-item" do %>
-        <span><%= application.name %></span>
+    <div class="navbar-dropdown">
+      <% selectable_applications.each do |application| %>
+        <%= link_to application_routes_path(application), class: "navbar-item" do %>
+          <span><%= application.name %></span>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-</div>
+<% end %>

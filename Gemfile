@@ -25,6 +25,7 @@ group :test, :profile do
   gem "benchmark-ips"
   gem "benchmark-memory"
   gem "mocha"
+  gem "capybara"
 end
 
 # Start debugger with binding.b [https://github.com/ruby/debug]
