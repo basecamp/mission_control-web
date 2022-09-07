@@ -10,7 +10,11 @@ module MissionControl::Web
       request = Request.new(env)
 
       if request.disallowed?
-        [ 503, {}, [ "Unavailable" ] ]
+        if MissionControl::Web.configuration.middleware_raises_error?
+          raise MissionControl::Web::Errors::ServiceUnavailable
+        else
+          [ 503, {}, [ "Unavailable" ] ]
+        end
       else
         @app.call(env)
       end

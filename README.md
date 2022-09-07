@@ -39,6 +39,16 @@ config.mission_control.web.redis = Redis.new(url: "redis://server:6379")
 config.mission_control.web.administered_applications = [ { name: "My Rails App", redis: Redis.new } ]
 ```
 
+### Raise exceptions
+
+Rather than return 503 Service Unavailable you can configure Mission Control - Web to raise an exception instead. This
+will bubble up to be handled by Rails exception handling. You can then create a custom error page in "public/503.html"
+that your Rails app will serve when Mission Control - Web blocks requests.
+
+```rb
+config.mission_control.web.middleware_raises_error = true
+```
+
 ### Disable Middleware
 
 Useful for disabling the Mission Control - Web request intercept middleware on a per-application or per-environment basis.
