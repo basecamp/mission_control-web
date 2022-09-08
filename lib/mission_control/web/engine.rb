@@ -32,6 +32,8 @@ module MissionControl
       end
 
       config.after_initialize do
+        MissionControl::Web.configuration.host_application_name ||= ::Rails.application.class.module_parent.to_s
+
         unless MissionControl::Web.configuration.middleware_serves_503_page?
           ActionDispatch::ExceptionWrapper.rescue_responses.merge!("MissionControl::Web::Errors::ServiceUnavailable" => :service_unavailable)
         end
