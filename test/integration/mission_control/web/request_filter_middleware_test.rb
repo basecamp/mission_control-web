@@ -24,14 +24,5 @@ module MissionControl::Web
 
       assert_equal 200, status
     end
-
-    test "an exception is raised when configured to do so" do
-      MissionControl::Web.configuration.middleware_serves_503_page = false
-      disable_route "/posts/123"
-
-      assert_raises MissionControl::Web::Errors::ServiceUnavailable do
-        get post_path(123)
-      end
-    end
   end
 end

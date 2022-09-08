@@ -1,11 +1,9 @@
 module MissionControl::Web
   class Request
+    attr_reader :path
+
     def initialize(env)
       @path = env["SCRIPT_NAME"] + env["PATH_INFO"]
-    end
-
-    def disallowed?
-      MissionControl::Web.host_application.route_disabled?(@path)
     end
   end
 end
