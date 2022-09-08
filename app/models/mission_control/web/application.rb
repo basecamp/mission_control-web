@@ -1,5 +1,6 @@
 class MissionControl::Web::Application
   include ActiveModel::Model
+  include Routes
 
   attr_accessor :name, :redis
 
@@ -26,25 +27,4 @@ class MissionControl::Web::Application
   end
 
   alias to_param id
-
-  def routes
-    MissionControl::Web::Route.where(application_id: id)
-  end
-
-  def route_was_updated(route)
-    routes_cache.put(route)
-  end
-
-  def route_was_deleted(route)
-    routes_cache.remove(route)
-  end
-
-  def route_disabled?(path)
-    routes_cache.disabled?(path)
-  end
-
-  private
-    def routes_cache
-      @routes_cache ||= MissionControl::Web::RoutesCache.new(self)
-    end
 end
