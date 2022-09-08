@@ -26,10 +26,12 @@ class ActiveSupport::TestCase
 
   MissionControl::Web.configuration.redis = redis = Redis.new(url: "redis://localhost:6379/15")
   MissionControl::Web.configuration.administered_applications = [ { name: "Dummy App", redis: redis } ]
+  MissionControl::Web.configuration.host_application_name = "Dummy App"
 
   setup do
     @original_redis = MissionControl::Web.configuration.redis
     @original_administered_applications = MissionControl::Web.configuration.administered_applications
+    @original_host_application_name = MissionControl::Web.configuration.host_application_name
 
     MissionControl::Web.configuration.routes_cache_ttl = 0.seconds
   end
@@ -38,6 +40,7 @@ class ActiveSupport::TestCase
     MissionControl::Web.configuration.restore_attributes
     MissionControl::Web.configuration.redis = @original_redis
     MissionControl::Web.configuration.administered_applications = @original_administered_applications
+    MissionControl::Web.configuration.host_application_name = @original_host_application_name
 
     MissionControl::Web.configuration.redis.flushdb
     MissionControl::Web.current_redis = nil

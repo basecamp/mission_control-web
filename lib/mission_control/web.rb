@@ -15,5 +15,9 @@ module MissionControl
     def self.redis
       current_redis || configuration.redis
     end
+
+    def self.host_application
+      @host_application ||= Application.find_by_name(configuration.host_application_name)
+    end
   end
 end

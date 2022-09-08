@@ -1,6 +1,7 @@
 class MissionControl::Web::Configuration
   include ActiveModel::Attributes, ActiveModel::Dirty
 
+  attribute :host_application_name,      :string
   attribute :middleware_enabled,         :boolean, default: true
   attribute :middleware_serves_503_page, :boolean, default: true
   attribute :routes_cache_ttl,           :integer, default: 10.seconds

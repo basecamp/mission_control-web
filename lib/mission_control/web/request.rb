@@ -5,7 +5,7 @@ module MissionControl::Web
     end
 
     def disallowed?
-      MissionControl::Web::Route.disabled?(@path)
+      MissionControl::Web.host_application.route_disabled?(@path)
     end
   end
 end

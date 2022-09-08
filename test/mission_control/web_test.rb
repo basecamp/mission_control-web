@@ -10,6 +10,6 @@ class MissionControl::WebTest < ActiveSupport::TestCase
 
     redis.expects(:smembers).returns([])
 
-    MissionControl::Web::Route.disabled?("/posts/123")
+    MissionControl::Web.host_application.route_disabled?("/posts/123")
   end
 end

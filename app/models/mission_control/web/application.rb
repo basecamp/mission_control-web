@@ -1,5 +1,6 @@
 class MissionControl::Web::Application
   include ActiveModel::Model
+  include Routes
 
   attr_accessor :name, :redis
 
@@ -12,6 +13,10 @@ class MissionControl::Web::Application
       all.find { |application| application.id == id } or raise MissionControl::Web::Errors::ResourceNotFound
     end
 
+    def find_by_name(name)
+      find(name.parameterize)
+    end
+
     def default
       all.first or raise MissionControl::Web::Errors::ResourceNotFound
     end
@@ -22,8 +27,4 @@ class MissionControl::Web::Application
   end
 
   alias to_param id
-
-  def routes
-    MissionControl::Web::Route.where(application_id: id)
-  end
 end

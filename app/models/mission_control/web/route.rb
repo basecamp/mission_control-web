@@ -1,5 +1,5 @@
 class MissionControl::Web::Route < ApplicationRecord
-  include DisabledRoutes
+  include Applications
 
   validates :name, :pattern, presence: true
   validates :pattern, uniqueness: true
