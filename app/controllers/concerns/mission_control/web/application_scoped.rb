@@ -12,6 +12,6 @@ module MissionControl::Web::ApplicationScoped
     end
 
     def set_application
-      MissionControl::Web::Current.application = @application = MissionControl::Web::Application.find(params[:application_id])
+      MissionControl::Web::Current.application = @application = MissionControl::Web::Application.find!(params[:application_id])
     end
 end

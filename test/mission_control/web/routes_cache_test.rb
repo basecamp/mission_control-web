@@ -2,7 +2,7 @@ require "test_helper"
 
 class MissionControl::Web::RoutesCacheTest < ActiveSupport::TestCase
   setup do
-    @routes = MissionControl::Web::RoutesCache.new(MissionControl::Web::Application.find("dummy-app"))
+    @routes = MissionControl::Web::RoutesCache.new(MissionControl::Web::Application.find!("dummy-app"))
     @route = MissionControl::Web::Route.create!(
       application_id: "dummy-app",
       name: "Posts show",

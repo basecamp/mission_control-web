@@ -5,7 +5,7 @@ class MissionControl::Web::Route < ApplicationRecord
   validates :pattern, uniqueness: true
 
   def application
-    @application ||= MissionControl::Web::Application.find(application_id)
+    @application ||= MissionControl::Web::Application.find!(application_id)
   end
 
   def disabled?
