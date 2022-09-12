@@ -10,11 +10,19 @@ class MissionControl::Web::Application
     end
 
     def find(id)
-      all.find { |application| application.id == id } or raise MissionControl::Web::Errors::ResourceNotFound
+      all.find { |application| application.id == id }
+    end
+
+    def find!(id)
+      find(id) or raise MissionControl::Web::Errors::ResourceNotFound
     end
 
     def find_by_name(name)
-      find(name.parameterize)
+      find!(name.parameterize)
+    end
+
+    def find_or_initialize_by_name(name)
+      find(name.parameterize) || new(name: name)
     end
 
     def default

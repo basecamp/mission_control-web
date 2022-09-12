@@ -12,4 +12,11 @@ class MissionControl::WebTest < ActiveSupport::TestCase
 
     MissionControl::Web.host_application.route_disabled?("/posts/123")
   end
+
+  test "administered applications are not required" do
+    MissionControl::Web.configuration.administered_applications = []
+    MissionControl::Web.configuration.host_application_name = "Dummy App"
+
+    assert_equal "Dummy App", MissionControl::Web.host_application.name
+  end
 end
