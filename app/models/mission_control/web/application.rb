@@ -17,10 +17,6 @@ class MissionControl::Web::Application
       find(id) or raise MissionControl::Web::Errors::ResourceNotFound
     end
 
-    def find_by_name(name)
-      find!(name.parameterize)
-    end
-
     def find_or_initialize_by_name(name)
       find(name.parameterize) || new(name: name)
     end
