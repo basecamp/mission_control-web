@@ -15,6 +15,12 @@ module MissionControl
         end
       end
 
+      initializer "mission_control-web.request" do
+        ActiveSupport.on_load :action_dispatch_request do
+          include MissionControl::Web::ActionDispatchRequest
+        end
+      end
+
       initializer "mission_control-web.add_middleware", after: "mission_control-web.config" do |app|
         if MissionControl::Web.configuration.middleware_enabled?
           app.middleware.use MissionControl::Web::RequestFilterMiddleware

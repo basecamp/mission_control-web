@@ -5,19 +5,22 @@ module MissionControl::Web
     end
 
     def call(env)
-      return @app.call(env) unless MissionControl::Web.configuration.middleware_enabled?
+      filter(env) || @app.call(env)
+    end
 
-      request = Request.new(env)
+    def filter(env)
+      return unless MissionControl::Web.configuration.middleware_enabled?
 
-      if request.disallowed?
-        if MissionControl::Web.configuration.middleware_serves_503_page?
-          [ 503, {}, [ "Unavailable" ] ]
-        else
-          raise MissionControl::Web::Errors::ServiceUnavailable
-        end
-      else
-        @app.call(env)
+      request = ActionDispatch::Request.new(env)
+
+      if action = request.mission_control.action
+        errors_controller.action(action).call(request.env)
       end
     end
+
+    private
+      def errors_controller
+        MissionControl::Web.configuration.errors_controller || MissionControl::Web::ErrorsController
+      end
   end
 end

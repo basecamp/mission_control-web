@@ -8,6 +8,7 @@ class MissionControl::Web::Configuration
   attribute :base_controller_class,      :string,  default: "::ApplicationController"
 
   attr_writer :redis, :administered_applications
+  attr_accessor :errors_controller
 
   alias :middleware_enabled? :middleware_enabled
   alias :middleware_serves_503_page? :middleware_serves_503_page
