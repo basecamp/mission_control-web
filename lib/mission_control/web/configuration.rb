@@ -3,7 +3,6 @@ class MissionControl::Web::Configuration
 
   attribute :host_application_name,      :string
   attribute :middleware_enabled,         :boolean, default: true
-  attribute :middleware_serves_503_page, :boolean, default: true
   attribute :routes_cache_ttl,           :integer, default: 10.seconds
   attribute :base_controller_class,      :string,  default: "::ApplicationController"
 
@@ -11,7 +10,6 @@ class MissionControl::Web::Configuration
   attr_accessor :errors_controller
 
   alias :middleware_enabled? :middleware_enabled
-  alias :middleware_serves_503_page? :middleware_serves_503_page
 
   def redis
     @redis || raise("Redis client not configured. Configure with MissionControl::Web.configuration.redis = Redis.new")
