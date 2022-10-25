@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_17_202401) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_25_093008) do
   create_table "mission_control_web_routes", force: :cascade do |t|
     t.string "name", null: false
     t.string "pattern", null: false
@@ -18,8 +18,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_17_202401) do
     t.string "application_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["application_id", "pattern"], name: "index_mission_control_web_routes_on_application_id_and_pattern", unique: true
     t.index ["application_id"], name: "index_mission_control_web_routes_on_application_id"
-    t.index ["pattern"], name: "index_mission_control_web_routes_on_pattern", unique: true
   end
 
   create_table "posts", force: :cascade do |t|
