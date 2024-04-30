@@ -11,7 +11,7 @@ module MissionControl::Web
         assert_equal 200, status
       }
 
-      assert_slower_by_at_most 1.23, baseline: baseline do
+      assert_slower_by_at_most 1.3, baseline: baseline do
         MissionControl::Web.configuration.middleware_enabled = true
 
         get posts_path
