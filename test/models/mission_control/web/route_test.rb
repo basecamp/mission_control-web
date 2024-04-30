@@ -20,6 +20,13 @@ class MissionControl::Web::RouteTest < ActiveSupport::TestCase
     assert_not MissionControl::Web.host_application.route_disabled? "/campfire"
   end
 
+  test "updating a Route with a new pattern deletes the old pattern" do
+    @route.update!(pattern: "/chat")
+
+    assert_not MissionControl::Web.host_application.route_disabled? "/campfire"
+    assert MissionControl::Web.host_application.route_disabled? "/chat"
+  end
+
   test "destroying a Route removes the routes configuration" do
     @route.destroy!
 

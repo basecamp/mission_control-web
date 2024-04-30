@@ -6,15 +6,15 @@ class MissionControl::Web::RoutesCache
   end
 
   def put(route)
+    remove(route)
+
     if route.disabled?
       add(route)
-    else
-      remove(route)
     end
   end
 
   def remove(route)
-    redis.srem redis_key, route.pattern.to_s
+    redis.srem redis_key, [ route.pattern_previously_was.to_s, route.pattern.to_s ]
   end
 
   def disabled?(path)

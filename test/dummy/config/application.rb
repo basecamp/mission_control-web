@@ -18,7 +18,7 @@ module Dummy
     config.mission_control.web.redis = Redis.new(url: "redis://localhost:6379/15")
     config.mission_control.web.administered_applications = [
       { name: "Dummy App", redis: Redis.new(url: "redis://localhost:6379/15") },
-      { name: "Another Dummy App", redis: Redis.new(url: "redis://localhost:6379/15") },
+      { name: "Another Dummy App", redis: Redis.new(url: "redis://localhost:6379/15") }
     ]
 
     # Configuration for the application, engines, and railties goes here.
