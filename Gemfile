@@ -2,10 +2,9 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 git_source(:bc)     { |repo| "https://github.com/basecamp/#{repo}" }
 
-# Specify your gem's dependencies in mission_control-web.gemspec.
 gemspec
 
-gem "sqlite3"
+gem "sqlite3", "~> 1.4"
 
 gem "sprockets-rails"
 
@@ -27,6 +26,3 @@ group :test, :profile do
   gem "mocha"
   gem "capybara"
 end
-
-# Start debugger with binding.b [https://github.com/ruby/debug]
-# gem "debug", ">= 1.0.0"
