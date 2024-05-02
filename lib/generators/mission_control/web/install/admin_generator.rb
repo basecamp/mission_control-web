@@ -1,3 +1,5 @@
+require "rails/generators"
+
 module MissionControl::Web
   module Install
     class AdminGenerator < Rails::Generators::Base
