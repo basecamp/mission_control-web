@@ -73,9 +73,24 @@ config.mission_control.web.redis = Redis.new(url: "redis://server:6379/0")
 config.mission_control.web.administered_applications = [ { name: "My Rails App", redis: Redis.new(url: "redis://server:6379/0") } ]
 ```
 
-### Custom error page
+### Custom "denied" page
 
-Create a template in your protected Rails app in the following location: `app/views/mission_control/web/errors/disallowed.html.erb`
+You can configure a custom page to show to users when a request is denied by Mission Control - Web. Configure this like
+so:
+
+```rb
+config.mission_control.web.errors_controller = MissionControl::Web::CustomErrorsController
+```
+
+Then, in your application, create a custom errors controller:
+
+```rb
+class MissionControl::Web::CustomErrorsController < MissionControl::Web::ErrorsController
+  def disallowed
+    render file: "public/503.html"
+  end
+end
+```
 
 ### Disable Middleware
 
@@ -86,6 +101,7 @@ config.mission_control.web.middleware_enabled = false
 ```
 
 ## Testing
+
 Run:
 
 ```sh
