@@ -4,7 +4,7 @@ This gem provides a Rails-based frontend and middleware to deny access to partic
 especially useful in an incident response scenario such as deployment of unperformant code, or a denial of service
 attack.
 
-<img width="952" alt="mcw-admin" src="https://github.com/basecamp/mission_control-web/assets/1773614/5c75a304-820e-4151-882e-f0782211356c">
+<img width="952" alt="Screenshot of Mission Control - Web admin UI" src="https://github.com/basecamp/mission_control-web/assets/1773614/5c75a304-820e-4151-882e-f0782211356c">
 
 ## Usage
 
