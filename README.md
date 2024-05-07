@@ -73,6 +73,17 @@ config.mission_control.web.redis = Redis.new(url: "redis://server:6379/0")
 config.mission_control.web.administered_applications = [ { name: "My Rails App", redis: Redis.new(url: "redis://server:6379/0") } ]
 ```
 
+### Authentication and base controller class
+
+By default, Mission Control's controllers will extend the host app's ApplicationController. If no authentication is
+enforced, the admin pages will be available to everyone. You might want to implement some kind of authentication for
+this in your app. To make this easier, you can specify a different controller as the base class for Mission Control's
+controllers:
+
+```rb
+config.mission_control.web.base_controller_class = "AdminController"
+```
+
 ### Custom "denied" page
 
 You can configure a custom page to show to users when a request is denied by Mission Control - Web. Configure this like
