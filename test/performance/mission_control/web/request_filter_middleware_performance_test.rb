@@ -2,7 +2,7 @@ require "test_helper"
 
 module MissionControl::Web
   class RequestFilterMiddlewarePerformanceTest < ActionDispatch::IntegrationTest
-    test "performance overhead with middleware enabled is less than 23%" do
+    test "performance overhead with middleware enabled is less than 5%" do
       baseline = -> {
         MissionControl::Web.configuration.middleware_enabled = false
 
@@ -11,7 +11,7 @@ module MissionControl::Web
         assert_equal 200, status
       }
 
-      assert_slower_by_at_most 1.3, baseline: baseline do
+      assert_slower_by_at_most 1.05, baseline: baseline do
         MissionControl::Web.configuration.middleware_enabled = true
 
         get posts_path
@@ -20,7 +20,7 @@ module MissionControl::Web
       end
     end
 
-    test "memory overhead with middleware enabled is less than 53%" do
+    test "memory overhead with middleware enabled is less than 5%" do
       warmup = -> {
         get posts_path
       }
@@ -33,7 +33,7 @@ module MissionControl::Web
         assert_equal 200, status
       }
 
-      assert_uses_more_memory_by_at_most 1.53, warmup: warmup, baseline: baseline do
+      assert_uses_more_memory_by_at_most 1.05, warmup: warmup, baseline: baseline do
         MissionControl::Web.configuration.middleware_enabled = true
 
         get posts_path
