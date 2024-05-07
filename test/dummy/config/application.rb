@@ -14,13 +14,6 @@ module Dummy
     # For compatibility with applications that use this config
     config.action_controller.include_all_helpers = false
 
-    config.mission_control.web.host_application_name = "Dummy App"
-    config.mission_control.web.redis = Redis.new(url: "redis://localhost:6379/15")
-    config.mission_control.web.administered_applications = [
-      { name: "Dummy App", redis: Redis.new(url: "redis://localhost:6379/15") },
-      { name: "Another Dummy App", redis: Redis.new(url: "redis://localhost:6379/15") }
-    ]
-
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
