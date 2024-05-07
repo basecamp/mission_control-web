@@ -6,6 +6,11 @@ attack.
 
 <img width="952" alt="Screenshot of Mission Control - Web admin UI" src="https://github.com/basecamp/mission_control-web/assets/1773614/5c75a304-820e-4151-882e-f0782211356c">
 
+## How it works
+
+Mission Control - Web can be configured via the admin interface to block requests whose path matched a regex pattern. If
+the requested path matches any "Denied" path, it will be blocked with a 503 HTTP status code.
+
 ## Usage
 
 You can choose to deploy Mission Control - Web admin and middleware both in the same Rails app, or two separate apps, a
@@ -100,4 +105,5 @@ If Redis is down (or raises any instance of Redis::BaseConnectionError), Mission
 It's recommended to also consider using a resilient Redis client with a circuit-breaker. See [Semian](https://github.com/Shopify/semian).
 
 ## License
+
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
