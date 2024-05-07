@@ -39,13 +39,13 @@ $ bin/rails generate mission_control:web:install
 After adding the `mission_control-web` gem, in your admin app:
 
 ```bash
-$ bin/rails generate mission_control:web:admin_install
+$ bin/rails generate mission_control:web:install:admin
 ```
 
 and in your protected Rails app:
 
 ```bash
-$ bin/rails generate mission_control:web:middleware_install
+$ bin/rails generate mission_control:web:install:middleware
 ```
 
 ## Configuration

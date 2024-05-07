@@ -5,6 +5,7 @@ require "zeitwerk"
 loader = Zeitwerk::Loader.new
 loader.inflector = Zeitwerk::GemInflector.new(__FILE__)
 loader.push_dir(File.expand_path("..", __dir__))
+loader.ignore(File.expand_path("..", __dir__) + "/generators")
 loader.setup
 
 module MissionControl
