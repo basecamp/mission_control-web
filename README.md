@@ -116,6 +116,28 @@ Denied paths are cached by the middleware and refreshed from Redis on this inter
 ```rb
 config.mission_control.web.routes_cache_ttl = 10.seconds
 ```
+## Example Regex Patterns for Paths
+
+When configuring denied paths through the Mission Control - Web admin interface, you can use regex patterns to match Rails routes.
+
+1. **Deny all routes under a specific namespace (e.g., admin):**
+   ```plaintext
+   ^/admin/.*
+   ```
+   This pattern blocks access to all routes that start with `/admin/`.
+
+2. **Deny specific controller actions (e.g., editing user profiles or settings updates):**
+   ```plaintext
+   ^/users/edit
+   ^/settings/update
+   ```
+   These patterns ensure that routes like `/users/edit` and `/settings/update` are blocked.
+
+3. **Deny access to API routes under a specific version (e.g., API v1):**
+   ```plaintext
+   ^/api/v1/.*
+   ```
+   This pattern blocks all routes starting with `/api/v1/`, useful for deprecating old API versions.
 
 ## Testing
 
