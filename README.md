@@ -103,12 +103,18 @@ class MissionControl::Web::CustomErrorsController < MissionControl::Web::ErrorsC
 end
 ```
 
-### Disable Middleware
+### Other configuration
 
-Useful for disabling the Mission Control - Web request intercept middleware on a per-application or per-environment basis.
+Useful for disabling the Mission Control - Web request intercept middleware on a per-application or per-environment basis:
 
 ```rb
 config.mission_control.web.middleware_enabled = false
+```
+
+Denied paths are cached by the middleware and refreshed from Redis on this interval. With this configuration, it takes up to 10 seconds for path denial to take effect:
+
+```rb
+config.mission_control.web.routes_cache_ttl = 10.seconds
 ```
 
 ## Testing
