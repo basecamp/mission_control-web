@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    mission_control-web (0.1.0)
+    mission_control-web (0.2.0)
       importmap-rails
       rails (>= 7.0.3.1)
       redis
