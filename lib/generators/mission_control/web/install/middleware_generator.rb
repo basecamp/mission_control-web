@@ -9,7 +9,7 @@ module MissionControl::Web::Install
       RUBY
     end
 
-    def configure_initializer
+    def insert_middleware_configuration
       initializer = <<~RUBY
         # Middleware
         config.mission_control.web.host_application_name = "My App"
@@ -17,6 +17,10 @@ module MissionControl::Web::Install
       RUBY
 
       insert_into_file INITIALIZER_FILE_PATH, indent(initializer), after: "Rails.application.configure do\n"
+    end
+
+    def toggle_middleware_enabled
+      gsub_file INITIALIZER_FILE_PATH, "middleware_enabled = false", "middleware_enabled = true"
     end
   end
 end

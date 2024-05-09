@@ -9,8 +9,10 @@ module MissionControl::Web::Install
       RUBY
     end
 
-    def configure_initializer
+    def insert_admin_configuration
       initializer = <<~RUBY
+        config.mission_control.web.middleware_enabled = false
+
         # Admin
         config.mission_control.web.administered_applications = [
           { name: "My App", redis: Redis.new(url: ENV.fetch("REDIS_URL", "redis://localhost:6379/0")) }
