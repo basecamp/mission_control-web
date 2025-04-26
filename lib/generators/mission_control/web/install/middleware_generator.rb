@@ -4,6 +4,8 @@ module MissionControl::Web::Install
 
     def create_initializer_file
       create_file INITIALIZER_FILE_PATH, <<~RUBY, skip: true
+        require "redis"
+  
         Rails.application.configure do
         end
       RUBY
