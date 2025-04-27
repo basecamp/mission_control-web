@@ -21,6 +21,16 @@ class MissionControl::Web::RoutesCache
     all_disabled_patterns.any? { |pattern| Regexp.new(pattern) =~ path }
   end
 
+  def set_protected_app_paths
+    redis.del protected_app_paths_redis_key
+
+    redis.hmset protected_app_paths_redis_key, build_protected_app_path_hash
+  end
+
+  def protected_app_paths
+    redis.hgetall protected_app_paths_redis_key
+  end
+
   private
     attr_reader :application
 
@@ -30,6 +40,10 @@ class MissionControl::Web::RoutesCache
 
     def redis_key
       :"mission_control_web_#{application.id}_disabled_patterns"
+    end
+
+    def protected_app_paths_redis_key
+      "mission_control_web_#{application.id}_protected_app_paths"
     end
 
     def all_disabled_patterns
@@ -48,5 +62,15 @@ class MissionControl::Web::RoutesCache
         @patterns_expires_at = Time.now + ttl
         @patterns = yield
       end
+    end
+
+    def build_protected_app_path_hash
+      routes_hash = {}
+      Rails.application.routes.routes.each do |route|
+        path_spec = route.path.spec.to_s
+        regexp_string = route.path.to_regexp.to_s
+        routes_hash[path_spec] = regexp_string
+      end
+      routes_hash.to_a.uniq(&:first).to_h
     end
 end

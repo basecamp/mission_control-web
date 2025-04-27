@@ -40,6 +40,13 @@ module MissionControl
       config.after_initialize do
         MissionControl::Web.configuration.host_application_name ||= ::Rails.application.class.module_parent.to_s
       end
+
+      config.after_routes_loaded do
+        if MissionControl::Web.configuration.middleware_enabled?
+          MissionControl::Web.host_application.set_protected_app_paths
+        end
+      end
+
     end
   end
 end
