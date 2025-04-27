@@ -29,6 +29,8 @@ class MissionControl::Web::RoutesCache
 
   def protected_app_paths
     redis.hgetall protected_app_paths_redis_key
+  rescue Redis::BaseConnectionError
+    {}
   end
 
   private
