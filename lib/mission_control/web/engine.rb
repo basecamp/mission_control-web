@@ -46,7 +46,6 @@ module MissionControl
           MissionControl::Web.host_application.set_protected_app_paths
         end
       end
-
     end
   end
 end

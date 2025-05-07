@@ -67,7 +67,7 @@ class MissionControl::Web::RoutesCacheTest < ActiveSupport::TestCase
     assert_equal 1, fake_redis.del_call_count
     assert_equal 1, fake_redis.hmset_call_count
     assert_equal "mission_control_web_dummy-app_protected_app_paths", fake_redis.last_hmset_key
-    assert_equal [{"/posts"=> "^/posts$"}], fake_redis.last_hmset_values
+    assert_equal [ { "/posts"=> "^/posts$" } ], fake_redis.last_hmset_values
   end
 
   test "protected_app_paths retrieves routes from Redis" do

@@ -29,13 +29,13 @@ class MissionControl::Web::RoutesControllerTest < ActionDispatch::IntegrationTes
 
   test "should create route with app_path" do
     assert_difference("MissionControl::Web::Route.count") do
-      post application_routes_url(@route.application), params: { 
-        route: { 
-          enabled: @route.enabled, 
-          name: @route.name, 
+      post application_routes_url(@route.application), params: {
+        route: {
+          enabled: @route.enabled,
+          name: @route.name,
           app_path: "/posts",
-          pattern: "^/posts$" 
-        } 
+          pattern: "^/posts$"
+        }
       }
     end
 
@@ -46,13 +46,13 @@ class MissionControl::Web::RoutesControllerTest < ActionDispatch::IntegrationTes
 
   test "should create route with custom pattern when no app_path selected" do
     assert_difference("MissionControl::Web::Route.count") do
-      post application_routes_url(@route.application), params: { 
-        route: { 
-          enabled: @route.enabled, 
-          name: @route.name, 
+      post application_routes_url(@route.application), params: {
+        route: {
+          enabled: @route.enabled,
+          name: @route.name,
           app_path: nil,
-          pattern: "/custom/pattern" 
-        } 
+          pattern: "/custom/pattern"
+        }
       }
     end
 
@@ -73,13 +73,13 @@ class MissionControl::Web::RoutesControllerTest < ActionDispatch::IntegrationTes
   end
 
   test "should update route with app_path" do
-    patch application_route_url(@route.application, @route), params: { 
-      route: { 
-        enabled: @route.enabled, 
-        name: @route.name, 
+    patch application_route_url(@route.application, @route), params: {
+      route: {
+        enabled: @route.enabled,
+        name: @route.name,
         app_path: "/posts",
-        pattern: "^/posts$" 
-      } 
+        pattern: "^/posts$"
+      }
     }
     assert_redirected_to application_route_url(@route.application, @route)
     @route.reload
@@ -88,13 +88,13 @@ class MissionControl::Web::RoutesControllerTest < ActionDispatch::IntegrationTes
   end
 
   test "should update route with custom pattern when no app_path selected" do
-    patch application_route_url(@route.application, @route), params: { 
-      route: { 
-        enabled: @route.enabled, 
-        name: @route.name, 
+    patch application_route_url(@route.application, @route), params: {
+      route: {
+        enabled: @route.enabled,
+        name: @route.name,
         app_path: nil,
-        pattern: "/custom/pattern" 
-      } 
+        pattern: "/custom/pattern"
+      }
     }
     assert_redirected_to application_route_url(@route.application, @route)
     @route.reload
