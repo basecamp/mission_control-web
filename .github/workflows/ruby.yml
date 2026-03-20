@@ -61,7 +61,7 @@ jobs:
         ruby-version: ['3.0', '3.3']
     services:
       redis:
-        image: redis:4.0-alpine
+        image: redis:4.0-alpine # zizmor: ignore[unpinned-images] -- digest pinning for service images is nontrivial and low risk
         ports:
           - 6379:6379
     steps:
