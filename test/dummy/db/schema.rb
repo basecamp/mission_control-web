@@ -16,6 +16,7 @@ ActiveRecord::Schema[7.1].define(version: 2022_10_25_093008) do
     t.string "pattern", null: false
     t.boolean "enabled", default: true
     t.string "application_id", null: false
+    t.string "app_path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["application_id", "pattern"], name: "index_mission_control_web_routes_on_application_id_and_pattern", unique: true
