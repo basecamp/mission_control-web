@@ -7,8 +7,21 @@
   </div>
 
   <div class="field">
+    <%= form.label :app_path_select, "Application Path" %><br>
+    <%= form.select :app_path,
+        options_for_select([["None", nil]] + @protected_app_paths.map { |path, pattern| [path, path] }, route.app_path),
+        {},
+        { class: "select", id: "app_path_select", data: { patterns: @protected_app_paths.to_json } }
+    %>
+  </div>
+
+  <div class="field">
     <%= form.label :pattern %>
-    <%= form.text_field :pattern %>
+    <%= form.text_field :pattern, 
+        id: "pattern_field",
+        readonly: route.app_path.present?,
+        class: "input #{route.app_path.present? ? 'is-static' : ''}" %>
+    <p class="help">Pattern is set automatically based on the selected application path. If None is selected, you can enter a custom pattern.</p>
   </div>
 
   <div class="field">
@@ -24,3 +37,27 @@
     <% end %>
   </div>
 <% end %>
+
+<script>
+  document.getElementById('app_path_select').addEventListener('change', function(event) {
+    const select = event.target;
+    const selectedPath = select.value;
+    const patterns = JSON.parse(select.dataset.patterns);
+    const patternField = document.getElementById('pattern_field');
+    
+    if (selectedPath === null || selectedPath === "") {
+      // None selected
+      patternField.value = "";
+      patternField.readOnly = false;
+      patternField.classList.remove('is-static');
+    } else {
+      // App path selected
+      const pattern = patterns[selectedPath];
+      if (pattern) {
+        patternField.value = pattern;
+        patternField.readOnly = true;
+        patternField.classList.add('is-static');
+      }
+    }
+  });
+</script>

@@ -2,6 +2,7 @@ class MissionControl::Web::RoutesController < MissionControl::Web::ApplicationCo
   include MissionControl::Web::ApplicationScoped
 
   before_action :set_route, only: %i[ show edit update destroy ]
+  before_action :set_protected_app_paths, only: %i[ new edit ]
 
   def index
     @routes = @application.routes
@@ -46,7 +47,11 @@ class MissionControl::Web::RoutesController < MissionControl::Web::ApplicationCo
       @route = @application.routes.find(params[:id])
     end
 
+    def set_protected_app_paths
+      @protected_app_paths = @application.protected_app_paths
+    end
+
     def route_params
-      params.require(:route).permit(:name, :pattern, :enabled)
+      params.require(:route).permit(:name, :pattern, :enabled, :app_path)
     end
 end

@@ -5,6 +5,7 @@ class CreateMissionControlWebRoutes < ActiveRecord::Migration[7.0]
       t.string :pattern, null: false
       t.boolean :enabled, default: true
       t.string :application_id, null: false, index: true
+      t.string :app_path
 
       t.timestamps
     end

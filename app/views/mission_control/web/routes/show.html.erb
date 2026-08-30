@@ -17,6 +17,15 @@
 
   <div class="columns">
     <div class="column is-one-fifth">
+      <p class="has-text-weight-semibold">Application Path</p>
+    </div>
+    <div class="column">
+      <p><%= @route.app_path.present? ? @route.app_path : "None" %></p>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column is-one-fifth">
       <p class="has-text-weight-semibold">Pattern</p>
     </div>
     <div class="column">

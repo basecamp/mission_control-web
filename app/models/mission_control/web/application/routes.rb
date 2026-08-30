@@ -1,6 +1,10 @@
 module MissionControl::Web::Application::Routes
   extend ActiveSupport::Concern
 
+  included do
+    delegate :protected_app_paths, :set_protected_app_paths, to: :routes_cache
+  end
+
   def routes
     MissionControl::Web::Route.where(application_id: id)
   end
