@@ -4,7 +4,7 @@ git_source(:bc)     { |repo| "https://github.com/basecamp/#{repo}" }
 
 gemspec
 
-gem "sqlite3", "~> 1.4"
+gem "sqlite3", "~> 2.9"
 
 gem "sprockets-rails"
 
